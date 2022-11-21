@@ -1,0 +1,11 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_custom_details,access_custom_details,model_vendor_details,base.group_user,1,1,1,1
+access_vendor_details_in_contact,access_vendor_details_in_contact,model_vendor_invoice,base.group_user,1,1,1,1
+
+
+
+
+
+
+
+

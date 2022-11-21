@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_res_partner_form_inherit_contact" model="ir.ui.view">
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                    <field name="vat" position="after">
+                           <field name="type_of_client_long_id"/>
+                    </field>
+                     <field name="vat" position="after">
+                           <field name="type_of_client_short"/>
+                    </field>
+                    <field name="category_id" position="after">
+                        <field name="contract_expiration_date"/>
+                    </field>
+                     <field name="category_id" position="before">
+                        <field name="place_of_invoicing_id"/>
+                    </field>
+            </field>
+    </record>
+     <record id="view_res_partner_form_inherit" model="ir.ui.view">
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                   <field name="property_supplier_payment_term_id" position="after">
+                        <group string="State" >
+
+                       <div>
+
+                           <label for="suspend"/>
+                           <field name="suspend"/>
+
+                       </div>
+                        </group>
+                   </field>
+                   </field>
+    </record>
+</odoo>

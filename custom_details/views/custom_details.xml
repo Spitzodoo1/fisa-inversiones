@@ -1,0 +1,35 @@
+<odoo>
+    <record id="custom_details" model="ir.ui.view">
+        <field name="name">vendor.details.form</field>
+        <field name="model">vendor.details</field>
+        <field name="arch" type="xml">
+        <tree string="Channel">
+          <field name="type_of_client_long"/>
+        </tree>
+        </field>
+    </record>
+    <record id="vendor_details_action" model="ir.actions.act_window">
+        <field name="name">Vendor Information</field>
+        <field name="res_model">vendor.details</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="vendor_details_invoice" model="ir.ui.view">
+        <field name="name">vendor.invoice.form</field>
+        <field name="model">vendor.invoice</field>
+        <field name="arch" type="xml">
+        <tree string="Channel">
+          <field name="place_of_invoicing"/>
+        </tree>
+        </field>
+    </record>
+    <record id="vendor_invoice_action" model="ir.actions.act_window">
+        <field name="name">Vendor Invoice</field>
+        <field name="res_model">vendor.invoice</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+<menuitem id="customer_details_menu_root" name="Type of Client" action="vendor_details_action" parent="contacts.res_partner_menu_config"/>
+<menuitem id="vendor_invoice_menu_root" name="Place of Invoice" action="vendor_invoice_action" parent="contacts.res_partner_menu_config"/>
+</odoo>
