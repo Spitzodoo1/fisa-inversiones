@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <record id="petty_cash_request" model="ir.actions.act_window">
+        <field name="name">Petty Cash Request</field>
+        <field name="res_model">petty.cash</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="petty_cash_request_view_form" model="ir.ui.view">
+        <field name="name">petty.cash.request.form</field>
+        <field name="model">petty.cash</field>
+        <field name="arch" type="xml">
+            <form string="petty cash">
+                <header>
+
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,requested,approved,cancel"/>
+<!--                    <button name="button_internal_transfer" type="object"-->
+<!--                            string="INTERNAL TRANSFER" class="oe_highlight"-->
+<!--                            groups="petty_cash.group_petty_cash_register"/>-->
+                    <button name="button_approve" string="Approve" type="object"
+                            class="oe_highlight"
+                            attrs="{'invisible':['|',('state', '!=', 'requested'),('limit', '=', True)]}"
+                            groups="petty_cash.group_petty_cash_approve"/>
+                    <button name="button_reject" string="Reject" type="object"
+                            class="oe_highlight"
+                            attrs="{'invisible':['|',('state', '!=', 'requested'),('limit', '=', True)]}"
+                            groups="petty_cash.group_petty_cash_approve"/>
+
+                    <button name="button_conform" type="object" string="Request"
+                            class="oe_highlight"
+                            attrs="{'invisible':[('state','!=','draft')]}"/>
+                    <button name="send_manager" type="object"
+                            string="Send To Manager"
+                            class="oe_highlight"
+                            attrs="{'invisible':['|',('state','!=','requested'),('limit', '!=', True)]}"
+                            groups="petty_cash.group_petty_cash_approve"/>
+                    <button name="approve_manager" type="object"
+                            string="Approve"
+                            class="oe_highlight"
+                            attrs="{'invisible':[('state','!=','send')]}"
+                            groups="petty_cash.group_petty_cash_approve_manager"/>
+                    <button name="reject_manager" type="object" string="Reject"
+                            class="oe_highlight"
+                            attrs="{'invisible':[('state','!=','send')]}"
+                            groups="petty_cash.group_petty_cash_approve_manager"/>
+
+
+                </header>
+                <xpath expr="//header" position="after">
+                    <div class="alert alert-danger" role="alert"
+                         style="display: inline-block; margin-bottom:0px;"
+                         attrs="{'invisible':[('limit','=',False)]}">
+                        <strong>Petty Cash Limit Exceeded ,Need Manager Approve
+                        </strong>
+                    </div>
+                </xpath>
+
+                <sheet>
+
+
+                    <group for="date">
+                        <field name="date"/>
+                    </group>
+                    <group>
+                        <field name="user_id"/>
+                    </group>
+                    <group>
+                        <field name="petty_limit"/>
+                    </group>
+                    <field name="petty" invisible="1"/>
+                    <field name="limit" invisible="1"/>
+                    <notebook>
+                        <page string="Petty Cash Transactions">
+
+                            <field name="line_ids">
+                                <tree editable="bottom">
+                                    <field name="partner_id"/>
+                                    <field name="date"/>
+                                    <field name="amount"/>
+
+                                </tree>
+                            </field>
+                        </page>
+
+                    </notebook>
+
+                </sheet>
+            </form>
+
+
+        </field>
+    </record>
+    <record id="petty_cash_request_view_tree" model="ir.ui.view">
+        <field name="name">petty.cash.request.tree</field>
+        <field name="model">petty.cash</field>
+        <field name="arch" type="xml">
+            <tree string="petty cash">
+                <field name="date"/>
+                <field name="user_id"/>
+                <field name="state"/>
+
+            </tree>
+
+
+        </field>
+    </record>
+
+    <record id="petty_cash_request_view_line_form" model="ir.ui.view">
+        <field name="name">petty.cash..line.form</field>
+        <field name="model">petty.cash.line</field>
+        <field name="arch" type="xml">
+            <form string="petty cash">
+                <sheet>
+                    <field name="petty_id"/>
+                    <field name="partner_id"/>
+                    <field name="date"/>
+                    <field name="amount"/>
+                </sheet>
+            </form>
+
+
+        </field>
+    </record>
+    <record id="petty_cash_management" model="ir.actions.act_window">
+        <field name="name">Petty Cash</field>
+        <field name="res_model">account.bank.statement</field>
+        <field name="domain">[('state','=','open')]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No new Request to review
+            </p>
+        </field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="petty_cash_request" model="ir.actions.act_window">
+        <field name="name">Petty Cash</field>
+        <field name="res_model">petty.cash</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No new data
+            </p>
+        </field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="petty_cash_request_review" model="ir.actions.act_window">
+        <field name="name">Petty Cash</field>
+        <field name="res_model">petty.cash</field>
+
+        <field name="domain">[('state','=','requested')]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No new Request to review
+            </p>
+        </field>
+
+        <field name="view_mode">tree,form</field>
+
+    </record>
+
+    <record id="petty_cash_request_view_manager_approve_petty"
+            model="ir.actions.act_window">
+        <field name="name">Request For Approve</field>
+        <field name="res_model">petty.cash</field>
+        <field name="domain">[('state','=','send')]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No new approvals to review
+            </p>
+        </field>
+
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="petty_cash_internal_transfer" model="ir.actions.act_window">
+        <field name="name">Request For Approve</field>
+        <field name="res_model">petty.cash</field>
+        <field name="domain">
+            ['|',('state','=','approved'),('state','=','approve')]
+        </field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No new data to Transfer
+            </p>
+        </field>
+
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem id="petty_cash_request_menu" name="Petty Cash Request"
+              parent="account_accountant.menu_accounting"/>
+    <menuitem id="petty_cash_request_user" name="Petty Cash Request"
+              action="petty_cash_request"
+              parent="petty_cash.petty_cash_request_menu"/>
+    <menuitem id="petty_cash_request_view" name=" Review Petty Cash Request"
+              action="petty_cash_request_review"
+              parent="petty_cash.petty_cash_request_menu" sequence="2"
+              groups="petty_cash.group_petty_cash_approve"/>
+
+    <menuitem id="petty_cash_request_view_manager" name="  Petty Cash "
+              parent="account_accountant.menu_accounting" sequence="6"
+              groups="petty_cash.group_petty_cash_register"/>
+<!--    <menuitem id="reconcile_petty_cash" name="Petty Cash Reconciliation "-->
+<!--              parent="petty_cash.petty_cash_request_view_manager"-->
+<!--              action="petty_cash_management"-->
+<!--              groups="petty_cash.group_petty_cash_register"/>-->
+
+<!--    <menuitem id="petty_cash_internal_transfer_manager" name="Internal Transfer"-->
+<!--              action="petty_cash_internal_transfer"-->
+<!--              parent="petty_cash.petty_cash_request_view_manager"-->
+<!--              groups="petty_cash.group_petty_cash_register"/>-->
+
+    <menuitem id="petty_cash_request_view_manager_approve"
+              name=" Manager Approve "
+              action="petty_cash_request_view_manager_approve_petty"
+              parent="petty_cash.petty_cash_request_menu"
+              groups="petty_cash.group_petty_cash_approve_manager"/>
+
+
+</odoo>

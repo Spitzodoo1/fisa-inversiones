@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_add_mrp_tray" model="ir.ui.view">
+        <field name="name">tray.manufacture.inherit.view</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <field name="tray"/>
+                <field name="has_tray" invisible="1"/>
+                <field name="product_tray" invisible="1"/>
+                <field name="tray_id"
+                       attrs="{'invisible':[('tray', '!=', True)]}"
+                />
+                <field name="exp_hour"
+                       attrs="{'invisible':[('tray', '!=', True)]}"
+                />
+                <field name="tray_quantity" attrs="{'invisible':[('tray', '!=', True)]}"/>
+                <field name="buffet_id" invisible="1"/>
+                <field name="transfer_id" invisible="1"/>
+
+            </field>
+            <xpath expr="//button[@name='button_mark_done']" position="after">
+                <button name="action_put_in_tray" class="oe_highlight"
+                        string="Put in  Tray"
+                        attrs="{'invisible':['|',('state', '!=', 'done'),('tray', '!=', True)]}"
+                        type="object"/>
+
+            </xpath>
+            <xpath expr="//div[@class='oe_button_box']" position="inside">
+                <button name="action_see_tray_transfer" string="Tray"
+                        type="object" class="oe_stat_button" icon="fa-cubes"  attrs="{'invisible':[('has_tray', '!=', True)]}"/>
+            </xpath>
+
+
+        </field>
+
+
+    </record>
+</odoo>

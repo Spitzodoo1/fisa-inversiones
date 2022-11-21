@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+    <odoo>
+    <record id="view_purchase_order_custom" model="ir.ui.view">
+        <field name="name">purchase.order.custom.form.inherited</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+            <field name="check_amount" invisible="1"/>
+            </field>
+            <xpath expr="//button[@name='action_rfq_send']" position="attributes">
+                <attribute name="attrs">{'invisible': [('state','!=','approved')]}
+                </attribute>
+                <attribute name="states"/>
+            </xpath>
+             <xpath expr="//button[@id='draft_confirm']" position="attributes">
+                <attribute name="attrs">{'invisible': [('state','!=','approved'),('state','!=','sent')]}
+                </attribute>
+                <attribute name="states"/>
+            </xpath>
+            <xpath expr="//button[@name='print_quotation']" position="attributes">
+                <attribute name="attrs">{'invisible': [('state','!=','approved')]}
+                </attribute>
+                <attribute name="states"/>
+            </xpath>
+
+
+
+
+            <xpath expr="//button[@name='print_quotation']" position="after">
+                <button name="check_budget" string="Check Budget"
+                        attrs="{'invisible':[('state', '!=', 'draft')]}"
+                        type="object" groups="fisa_purchase.group_commision_plan_Tab"/>
+
+                  <button name="button_approve_manager" string="Send To Approve"
+                        attrs="{'invisible':['|',('check_amount', '!=', True),('state', '!=', 'checked')]}"
+                        type="object" groups="fisa_purchase.group_commision_plan_Tab"/>
+
+
+                <button name="approve_budget" string="Approve"
+                        attrs="{'invisible':[('state','!=','sent_to_approve')]}"
+                        type="object" groups="fisa_purchase.group_commision_Executive_Management"/>
+
+                 <button name="button_disapprove_budget" string="Disapprove"
+                        attrs="{'invisible':[('state', '!=', 'sent_to_approve'),]}"
+                        type="object" groups="fisa_purchase.group_commision_Executive_Management"/>
+
+                 <button name="approve_order" string="Approve Order"
+                        attrs="{'invisible':[('state', '!=', 'waiting_approval'),('state', '!=', 'manager_approved')]}"
+                        type="object" groups="fisa_purchase.group_purchase_management_Executive_Management"/>
+
+
+                <button name="button_disapprove" string="Disapprove Order"
+                        attrs="{'invisible':[('state', '!=', 'waiting_approval'),('state', '!=', 'manager_approved')]}"
+                        type="object" groups="fisa_purchase.group_purchase_management_Executive_Management"/>
+
+
+
+            </xpath>
+            <xpath expr="//header" position="after">
+                <div class="alert alert-danger" role="alert" style="display: inline-block; margin-bottom:0px;"
+                             attrs="{'invisible':[('check_amount','=',False)]}">
+                              <strong>Please sent this Request  to Executive Management  This Order has an extraordinary expense</strong>
+                                 </div></xpath>
+
+        </field>
+    </record>
+     <record id="purchase_approval_request_action_to_review" model="ir.actions.act_window">
+        <field name="name">Approvals to Review</field>
+        <field name="res_model">purchase.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('state','=','sent_to_approve')]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No new approvals to review
+            </p>
+        </field>
+    </record>
+      <record id="purchase_approval_request_action_to_approved" model="ir.actions.act_window">
+        <field name="name">Approved  Budget</field>
+        <field name="res_model">purchase.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('state','=','manager_approved')]</field>
+
+      </record>
+    <record id="purchase_approval_request_action_to_check" model="ir.actions.act_window">
+        <field name="name">Check  Budget</field>
+        <field name="res_model">purchase.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('state','=','draft')]</field>
+    </record>
+    <record id="purchase_approval_request_action_to_checked" model="ir.actions.act_window">
+        <field name="name">Checked  Budget</field>
+        <field name="res_model">purchase.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">['|',('state','=','checked'),('state','=','waiting_approval')]</field>
+    </record>
+     <record id="purchase_approval_request_action_to_review_order" model="ir.actions.act_window">
+        <field name="name">Approval  To review</field>
+        <field name="res_model">purchase.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">['|',('state','=','manager_approved'),('state','=','waiting_approval')]</field>
+    </record>
+    <record id="purchase_approval_request_action_to_approved_order" model="ir.actions.act_window">
+        <field name="name">Approved Orders</field>
+        <field name="res_model">purchase.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('state','=','approved')]</field>
+    </record>
+
+      <menuitem
+        id="purchase_check_menu_budget"
+        parent="purchase.menu_purchase_root"
+        name="Budget "
+         groups="fisa_purchase.group_commision_plan_Tab"
+        sequence="2"/>
+
+     <menuitem
+        id="purchase_approval_menu_to_check"
+        parent="purchase_check_menu_budget"
+        name="Check Budget"
+        groups="fisa_purchase.group_commision_plan_Tab"
+        action="purchase_approval_request_action_to_check"
+        sequence="40"
+        />
+     <menuitem
+        id="purchase_approval_menu_to_checked"
+        parent="purchase_check_menu_budget"
+        name="Checked Budget"
+        groups="fisa_purchase.group_commision_plan_Tab"
+        action="purchase_approval_request_action_to_checked"
+        sequence="40"
+        />
+     <menuitem
+        id="purchase_approval_menu_budget"
+        parent="purchase.menu_purchase_root"
+        name="Budget Approvals"
+         groups="fisa_purchase.group_commision_Executive_Management"
+        sequence="3"/>
+     <menuitem
+        id="purchase_approval_menu_to_review"
+        parent="purchase_approval_menu_budget"
+        name="Approvals to Review"
+        groups="fisa_purchase.group_commision_Executive_Management"
+        action="purchase_approval_request_action_to_review"
+        sequence="10"/>
+
+     <menuitem
+        id="purchase_approval_menu_to_approved"
+        parent="purchase_approval_menu_budget"
+        name="Approved Budget"
+        groups="fisa_purchase.group_commision_Executive_Management"
+        action="purchase_approval_request_action_to_approved"
+        sequence="40"
+        />
+    <menuitem
+        id="purchase_approval_order_menu"
+        parent="purchase.menu_purchase_root"
+        name="Purchase Approvals "
+         groups="fisa_purchase.group_purchase_management_Executive_Management"
+        sequence="4"/>
+     <menuitem
+        id="purchase_approval_menu_to_review_order"
+        parent="purchase_approval_order_menu"
+        name="Approvals to Review"
+        groups="fisa_purchase.group_purchase_management_Executive_Management"
+        action="purchase_approval_request_action_to_review_order"
+        sequence="10"/>
+    <menuitem
+        id="purchase_approval_menu_to_approved_order"
+        parent="purchase_approval_order_menu"
+        name="Approved Order"
+        groups="fisa_purchase.group_purchase_management_Executive_Management"
+        action="purchase_approval_request_action_to_approved_order"
+        sequence="40"/>
+
+
+</odoo>
+<!--</odoo>-->

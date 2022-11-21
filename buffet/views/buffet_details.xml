@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="buffet_details_action" model="ir.actions.act_window">
+        <field name="name">Buffet Details</field>
+        <field name="res_model">buffet.details</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <record id="buffet_details_form_view" model="ir.ui.view">
+        <field name="name">buffet.details.form</field>
+        <field name="model">buffet.details</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="buffet_id"/>
+                        <field name="origin"/>
+                    </group>
+
+
+                    <notebook>
+                        <page string="Tray Details">
+
+                            <field name="tray_ids">
+                                <tree editable="bottom">
+                                    <field name="tray_id"/>
+                                    <field name="product_id"/>
+                                    <field name="quantity"/>
+                                    <field name="exp_hour"
+                                           widget="float_time"
+                                           style="color:red;"/>
+                                    <button name="remove_tray" string="Remove"
+                                            type="object"
+                                            class="btn btn-warning"/>
+                                    <button name="return_order" string="Return"
+                                            class="btn-danger" type="object"
+                                    />
+
+                                </tree>
+                            </field>
+
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+
+        </field>
+    </record>
+
+    <menuitem id="buffet_details" name="Buffet Details"
+              action="buffet_details_action"
+              parent="buffet.buffet_order_item" sequence="20"/>
+
+
+</odoo>

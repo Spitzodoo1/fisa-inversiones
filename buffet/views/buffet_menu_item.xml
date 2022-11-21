@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="buffet_menu_item_action" model="ir.actions.act_window">
+        <field name="name">Buffet Menu Item</field>
+        <field name="res_model">buffet.menu.item</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+    <record id="buffet_menu_item_form" model="ir.ui.view">
+        <field name="name">buffet.menu.form</field>
+        <field name="model">buffet.menu.item</field>
+        <field name="arch" type="xml">
+            <form string="buffet" editable="bottom">
+                <sheet>
+                    <group>
+                        <field name="product_ids" widget="many2many_tags"/>
+                        <field name="menu_type_id"/>
+                        <field name="buffet_location_id"/>
+                        <field name="User_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="buffet_menu_item_tree" model="ir.ui.view">
+        <field name="name">buffet.menu.tree</field>
+        <field name="model">buffet.menu.item</field>
+        <field name="arch" type="xml">
+            <tree string="buffet" editable="bottom">
+
+                <field name="menu_type_id"/>
+                <field name="buffet_location_id"/>
+                <field name="User_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <menuitem id="buffet_menu_type_item" name="Buffet Menu Item"
+              action="buffet_menu_item_action"
+              parent="buffet.buffet_menu_type_root"/>
+
+</odoo>

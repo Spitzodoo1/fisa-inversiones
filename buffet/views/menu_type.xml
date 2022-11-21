@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="buffet_menu_form" model="ir.ui.view">
+        <field name="name">buffet.menu.form</field>
+        <field name="model">buffet.menu</field>
+        <field name="arch" type="xml">
+            <tree string="Test" editable="bottom">
+                <field name="type"/>
+
+                              </tree>
+        </field>
+    </record>
+    <record id="buffet_type_menu_action" model="ir.actions.act_window">
+        <field name="name">Menu Type</field>
+        <field name="res_model">buffet.menu</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem id="buffet_menu_type_root" name="Configuration"
+    parent="buffet.buffet_menu_root" sequence="100"/>
+    <menuitem id="buffet_menu_type" name="Menu Type " sequence="0"
+              action="buffet_type_menu_action"  parent="buffet.buffet_menu_type_root"/>
+</odoo>

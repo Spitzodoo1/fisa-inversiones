@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_tray_view_action" model="ir.actions.act_window">
+        <field name="name">Tray</field>
+        <field name="res_model">tray.tray</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="view_buffet_tray" model="ir.ui.view">
+        <field name="name">tray.tray.view.form</field>
+        <field name="model">tray.tray</field>
+        <field name="arch" type="xml">
+            <form >
+                <sheet>
+                    <group>
+                        <field name="tray"/>
+                        <field name="type"/>
+                        <field name="barcode"/>
+                    </group>
+                </sheet>
+            </form>
+
+        </field>
+    </record>
+
+<menuitem id="tray_menu_root" name="Tray" action="view_tray_view_action"
+              parent="stock.menu_stock_config_settings" sequence="5"/>
+
+
+</odoo>

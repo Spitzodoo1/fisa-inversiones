@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_tray_action" model="ir.actions.act_window">
+        <field name="name">Tray</field>
+        <field name="res_model">product.tray</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="view_mrp_tray" model="ir.ui.view">
+        <field name="name">product.tray.view.form</field>
+        <field name="model">product.tray</field>
+        <field name="arch" type="xml">
+            <form >
+                <sheet>
+                    <group>
+
+                        <field name="tray_id"/>
+                        <field name="product_id"/>
+                        <field name="quantity"/>
+                        <field name="exp_hour"/>
+                        <field name="write_date" />
+                        <field name="picking_id"/>
+                        <field name="location_id"/>
+                    </group>
+
+
+                </sheet>
+            </form>
+
+        </field>
+    </record>
+
+
+        <menuitem id="tray_menu_root_buffet" name="Tray" action="view_tray_action"
+              parent="buffet.buffet_menu_root" sequence="50"/>
+
+</odoo>

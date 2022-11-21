@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="buffet_remove_action" model="ir.actions.act_window">
+        <field name="name">Removing Order</field>
+        <field name="res_model">removing.tray</field>
+        <field name="view_mode">form,tree,kanban</field>
+    </record>
+      <record id="tray_remove_action" model="ir.actions.act_window">
+        <field name="name">Tray Removing Order</field>
+        <field name="res_model">removing.tray</field>
+        <field name="view_mode">tree,kanban</field>
+    </record>
+
+    <record id="buffet_remove_order_form" model="ir.ui.view">
+        <field name="name">removing.tray.form</field>
+        <field name="model">removing.tray</field>
+        <field name="arch" type="xml">
+            <form string="Test">
+                <header>
+                    <button name="cron_remove_tray" type="object"
+                            string="Request"/>
+                </header>
+
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="product_id"/>
+                            <field name="tray_id"/>
+                            <field name="exp_hour"/>
+                        </group>
+                    </group>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+    <record id="buffet_remove_order_tree" model="ir.ui.view">
+        <field name="name">removing.tray.tree</field>
+        <field name="model">removing.tray</field>
+        <field name="arch" type="xml">
+            <tree string="remove">
+
+
+
+                            <field name="product_id"/>
+                            <field name="tray_id"/>
+                            <field name="exp_hour"/>
+                <field name="location_id"/>
+                <field name="picking_id"/>
+                <field name="remove" invisible="1"/>
+                            <field name="state"/>
+
+                <button name="remove_tray" string="Remove" class="btn-danger" type="object"
+                  attrs="{'invisible':[('remove','=',True)]}"/>
+                <button name="return_tray" string="Return" class="btn-success" type="object"
+                  attrs="{'invisible':[('remove','=',True)]}"/>
+                <button name="scrap_tray" string="Scrap" class="btn-warning" type="object"
+                  attrs="{'invisible':[('remove','=',True)]}"/>
+
+
+            </tree>
+        </field>
+    </record>
+
+    <menuitem id="buffet_removing" name="Removing Request"
+              action="buffet_remove_action"
+              parent="buffet.buffet_menu_kitchen_root"
+              sequence="10"/>
+    <menuitem id="tray_removing_order" name="Removing Order"
+              action="tray_remove_action"
+              parent="buffet.buffet_order_item"
+              sequence="100"
+              />
+
+</odoo>
+

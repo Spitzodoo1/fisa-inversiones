@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <record id="view_mrp_pack_custom" model="ir.ui.view">
+        <field name="name">product.packaging.inherit.view</field>
+        <field name="model">product.packaging</field>
+        <field name="inherit_id" ref="product.product_packaging_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='group_product']" position="inside">
+                <field name="manufacture"/>
+            </xpath>
+
+        </field>
+    </record>
+    <record id="view_mrp_order_custom" model="ir.ui.view">
+        <field name="name">mrp.mrp_production_form_view.inherited.view</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <field name="has_packages" invisible="1"/>
+
+                <field name="pack_id" invisible="1"/>
+
+            </field>
+            <field name="company_id" position="after">
+
+            </field>
+            <xpath expr="//button[@name='button_scrap']" position="attributes">
+                <attribute name="attrs">{'invisible':
+                    [('has_packages','=',True)]}
+                </attribute>
+                <attribute name="states"/>
+            </xpath>
+
+            <xpath expr="//button[@name='button_mark_done']" position="after">
+                <button name="action_put_in_pack" class="oe_highlight"
+                        string="Put in  Pack"
+                        attrs="{'invisible':[('state', '!=', 'done')]}"
+                        type="object"/>
+
+            </xpath>
+
+            <xpath expr="//div[@class='oe_button_box']" position="inside">
+                <button name="action_see_packages" string="Packages"
+                        type="object" class="oe_stat_button" icon="fa-cubes"
+                        attrs="{'invisible': [('has_packages', '=', False)]}"/>
+            </xpath>
+
+        </field>
+    </record>
+
+
+</odoo>
+        <!--</odoo>-->

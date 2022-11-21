@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+    <odoo>
+    <data noupdate="1">
+        <record id="sequence_buffet_management" model="ir.sequence">
+           <field name="name">Buffet Management</field>
+           <field name="code">buffet.buffet</field>
+           <field name="active">TRUE</field>
+           <field name="prefix">BFOR</field>
+           <field name="padding">6</field>
+           <field name="number_next">1</field>
+           <field name="number_increment">1</field>
+        </record>
+    </data>
+    </odoo>

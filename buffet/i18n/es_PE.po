@@ -1,0 +1,726 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* buffet
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-09-01 09:02+0000\n"
+"PO-Revision-Date: 2022-09-01 09:02+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: buffet
+#: model:ir.model.fields.selection,name:buffet.selection__buffet_buffet__state__refill
+msgid "  Refill Request"
+msgstr " Solicitud de recarga"
+
+#. module: buffet
+#: model:ir.model.fields.selection,name:buffet.selection__buffet_buffet__state__refilled
+msgid " Refilled"
+msgstr "Rellenado"
+
+#. module: buffet
+#: model:mail.template,body_html:buffet.exp_notification_email_template
+msgid "buffet"
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"                    <div style=\"margin: 0px; padding: 0px;\">\n"
+"                        <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"                            Dear\n"
+"                            <t t-esc=\"ctx['user']\">\n"
+"                            </t>\n"
+"\n"
+"                            <br/>\n"
+"                            Here is a warning that the expiration hours  of\n"
+"                            <t t-esc=\"ctx['tray_id']\">\n"
+"                            </t> is exceed\n"
+"\n"
+"                            Could you please confirm it will be removed from the buffet\n"
+"                            <t t-esc=\"ctx['buffet']\"/>.\n"
+"                        </p>\n"
+"                    </div>\n"
+"\n"
+"                </div>\n"
+"            "
+msgstr ""
+
+#. module: buffet
+#: model:ir.model.fields.selection,name:buffet.selection__buffet_buffet__state__approved
+msgid "Approved"
+msgstr "Aprobado"
+
+#. module: buffet
+#: model:ir.model.fields,field_description:buffet.field_buffet_line__available
+msgid "Available Quantity"
+msgstr "Cantidad disponible"
+
+#. module: buffet
+#: model:ir.actions.act_window,name:buffet.buffet_line_action
+#: model:ir.actions.act_window,name:buffet.buffet_order_action
+#: model:ir.model.fields,field_description:buffet.field_buffet_buffet__buffet_id
+#: model:ir.model.fields,field_description:buffet.field_buffet_details__buffet_id
+#: model:ir.model.fields,field_description:buffet.field_buffet_line__buffet_id
+#: model:ir.model.fields,field_description:buffet.field_mrp_production__buffet_id
+#: model:ir.model.fields,field_description:buffet.field_product_tray__location_id
+#: model:ir.model.fields,field_description:buffet.field_stock_picking__buffet
+#: model:ir.module.category,name:buffet.module_category_buffet
+#: model:ir.ui.menu,name:buffet.buffet_menu_root
+msgid "Buffet"
+msgstr "Buffet"
+
+#. module: buffet
+#: model:ir.model.fields,field_description:buffet.field_buffet_buffet__buffet_check
+msgid "Buffet Check"
+msgstr "Cheque de buffet"
+
+#. module: buffet
+#: model:ir.actions.act_window,name:buffet.buffet_details_action
+#: model:ir.model.fields,field_description:buffet.field_product_tray__buffet_details_id
+#: model:ir.ui.menu,name:buffet.buffet_details
+msgid "Buffet Details"
+msgstr "Detalles del buffet"
+
+#. module: buffet
+#: model:ir.ui.menu,name:buffet.buffet_menu_kitchen
+msgid "Buffet Kitchen"
+msgstr "Cocina Buffet"
+
+#. module: buffet
+#: model:ir.model.fields,field_description:buffet.field_buffet_buffet__buffet_line_ids
+#: model_terms:ir.ui.view,arch_db:buffet.buffet_views_form
+msgid "Buffet Line"
+msgstr "Línea de buffet"
+
+#. module: buffet
+#: model:ir.model.fields,field_description:buffet.field_buffet_location__location_id
+#: model:ir.model.fields,field_description:buffet.field_buffet_menu_item__buffet_location_id
+#: model:ir.ui.menu,name:buffet.buffet_location
+#: model_terms:ir.ui.view,arch_db:buffet.buffet_search_view
+msgid "Buffet Location"
+msgstr "Ubicación del buffet"
+
+#. module: buffet
+#: model:ir.actions.act_window,name:buffet.buffet_menu_item_action
+#: model:ir.ui.menu,name:buffet.buffet_menu_type_item
+msgid "Buffet Menu Item"
+msgstr "Elemento del menú del buffet"
+
+#. module: buffet
+#: model:ir.ui.menu,name:buffet.buffet_order_item
+#: model:ir.ui.menu,name:buffet.buffet_order_item_user
+msgid "Buffet Orders"
+msgstr "Pedidos de buffet"
+
+#. module: buffet
+#: model:ir.actions.act_window,name:buffet.buffet_kitchen_refill_action
+msgid "Buffet Picking"
+msgstr "Recogida en el bufé"
+
+#. module: buffet
+#: model:ir.ui.menu,name:buffet.buffet_menu_type_root
+msgid "Configuration"
+msgstr "Configuración"
+
+#. module: buffet
+#: model_terms:ir.ui.view,arch_db:buffet.buffet_refill_order_form
+msgid "Conform"
+msgstr "Conforme"
+
+#. module: buffet
+#: model:ir.model.fields,field_description:buffet.field_buffet_buffet__create_uid
+#: model:ir.model.fields,field_description:buffet.field_buffet_details__create_uid
+#: model:ir.model.fields,field_description:buffet.field_buffet_kitchen__create_uid
+#: model:ir.model.fields,field_description:buffet.field_buffet_line__create_uid
+#: model:ir.model.fields,field_description:buffet.field_buffet_location__create_uid
+#: model:ir.model.fields,field_description:buffet.field_buffet_menu__create_uid
+#: model:ir.model.fields,field_description:buffet.field_buffet_menu_item__create_uid
+#: model:ir.model.fields,field_description:buffet.field_product_tray__create_uid
+#: model:ir.model.fields,field_description:buffet.field_refill_order__create_uid
+#: model:ir.model.fields,field_description:buffet.field_removing_tray__create_uid
+#: model:ir.model.fields,field_description:buffet.field_tray_tray__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: buffet
+#: model:ir.model.fields,field_description:buffet.field_buffet_buffet__create_date
+#: model:ir.model.fields,field_description:buffet.field_buffet_details__create_date
+#: model:ir.model.fields,field_description:buffet.field_buffet_kitchen__create_date
+#: model:ir.model.fields,field_description:buffet.field_buffet_line__create_date
+#: model:ir.model.fields,field_description:buffet.field_buffet_location__create_date
+#: model:ir.model.fields,field_description:buffet.field_buffet_menu__create_date
+#: model:ir.model.fields,field_description:buffet.field_buffet_menu_item__create_date
+#: model:ir.model.fields,field_description:buffet.field_product_tray__create_date
+#: model:ir.model.fields,field_description:buffet.field_refill_order__create_date
+#: model:ir.model.fields,field_description:buffet.field_removing_tray__create_date
+#: model:ir.model.fields,field_description:buffet.field_tray_tray__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: buffet
+#: model:ir.model.fields,field_description:buffet.field_buffet_buffet__date
+msgid "Date"
+msgstr "Fecha"
+
+#. module: buffet
+#: model:ir.model.fields.selection,name:buffet.selection__buffet_buffet__state__delivered
+msgid "Delivered"
+msgstr "Entregado"
+
+#. module: buffet
+#: model:res.groups,name:buffet.group_buffet_apply_order
+msgid "Demmy Chief"
+msgstr "Jefe Demmy"
+
+#. module: buffet
+#: model:ir.model.fields,field_description:buffet.field_buffet_buffet__display_name
+#: model:ir.model.fields,field_description:buffet.field_buffet_details__display_name
+#: model:ir.model.fields,field_description:buffet.field_buffet_kitchen__display_name
+#: model:ir.model.fields,field_description:buffet.field_buffet_line__display_name
+#: model:ir.model.fields,field_description:buffet.field_buffet_location__display_name
+#: model:ir.model.fields,field_description:buffet.field_buffet_menu__display_name
+#: model:ir.model.fields,field_description:buffet.field_buffet_menu_item__display_name
+#: model:ir.model.fields,field_description:buffet.field_product_tray__display_name
+#: model:ir.model.fields,field_description:buffet.field_refill_order__display_name
+#: model:ir.model.fields,field_description:buffet.field_removing_tray__display_name
+#: model:ir.model.fields,field_description:buffet.field_tray_tray__display_name
+msgid "Display Name"
+msgstr "Nombre de la pantalla"
+
+#. module: buffet
+#: model:ir.model.fields,field_description:buffet.field_mrp_production__tray
+msgid "Do you need Tray"
+msgstr "Necesita una bandeja?"
+
+#. module: buffet
+#: model:ir.model.fields,field_description:buffet.field_removing_tray__exp_hour
+msgid "Exp Hour"
+msgstr "Hora de Exp."
+
+#. module: buffet
+#: model:ir.model.fields,field_description:buffet.field_mrp_production__exp_hour
+#: model:ir.model.fields,field_description:buffet.field_product_tray__exp_hour
+#: model:ir.model.fields,field_description:buffet.field_stock_move__exp_hour
+msgid "Expiration Hour"
+msgstr "Hora de caducidad"
+
+#. module: buffet
+#: model:res.groups,name:buffet.group_buffet_request
+msgid "Food Runner"
+msgstr "Corredor de la comida"
+
+#. module: buffet
+#: model:ir.model.fields,field_description:buffet.field_mrp_production__has_tray
+msgid "Has Tray"
+msgstr "Tiene bandeja"
+
+#. module: buffet
+#: model:ir.model.fields,field_description:buffet.field_buffet_buffet__id
+#: model:ir.model.fields,field_description:buffet.field_buffet_details__id
+#: model:ir.model.fields,field_description:buffet.field_buffet_kitchen__id
+#: model:ir.model.fields,field_description:buffet.field_buffet_line__id
+#: model:ir.model.fields,field_description:buffet.field_buffet_location__id
+#: model:ir.model.fields,field_description:buffet.field_buffet_menu__id
+#: model:ir.model.fields,field_description:buffet.field_buffet_menu_item__id
+#: model:ir.model.fields,field_description:buffet.field_product_tray__id
+#: model:ir.model.fields,field_description:buffet.field_refill_order__id
+#: model:ir.model.fields,field_description:buffet.field_removing_tray__id
+#: model:ir.model.fields,field_description:buffet.field_tray_tray__id
+msgid "ID"
+msgstr ""
+
+#. module: buffet
+#: model:ir.model.fields,field_description:buffet.field_buffet_line__product_id
+#: model:ir.model.fields,field_description:buffet.field_buffet_menu_item__product_ids
+msgid "Item"
+msgstr "Artículo"
+
+#. module: buffet
+#: model:ir.ui.menu,name:buffet.buffet_menu_kitchen_root
+msgid "Kitchen"
+msgstr "Cocina"
+
+#. module: buffet
+#: model:ir.model.fields,field_description:buffet.field_buffet_buffet____last_update
+#: model:ir.model.fields,field_description:buffet.field_buffet_details____last_update
+#: model:ir.model.fields,field_description:buffet.field_buffet_kitchen____last_update
+#: model:ir.model.fields,field_description:buffet.field_buffet_line____last_update
+#: model:ir.model.fields,field_description:buffet.field_buffet_location____last_update
+#: model:ir.model.fields,field_description:buffet.field_buffet_menu____last_update
+#: model:ir.model.fields,field_description:buffet.field_buffet_menu_item____last_update
+#: model:ir.model.fields,field_description:buffet.field_product_tray____last_update
+#: model:ir.model.fields,field_description:buffet.field_refill_order____last_update
+#: model:ir.model.fields,field_description:buffet.field_removing_tray____last_update
+#: model:ir.model.fields,field_description:buffet.field_tray_tray____last_update
+msgid "Last Modified on"
+msgstr "Modificado por última vez el"
+
+#. module: buffet
+#: model:ir.model.fields,field_description:buffet.field_buffet_buffet__write_uid
+#: model:ir.model.fields,field_description:buffet.field_buffet_details__write_uid
+#: model:ir.model.fields,field_description:buffet.field_buffet_kitchen__write_uid
+#: model:ir.model.fields,field_description:buffet.field_buffet_line__write_uid
+#: model:ir.model.fields,field_description:buffet.field_buffet_location__write_uid
+#: model:ir.model.fields,field_description:buffet.field_buffet_menu__write_uid
+#: model:ir.model.fields,field_description:buffet.field_buffet_menu_item__write_uid
+#: model:ir.model.fields,field_description:buffet.field_product_tray__write_uid
+#: model:ir.model.fields,field_description:buffet.field_refill_order__write_uid
+#: model:ir.model.fields,field_description:buffet.field_removing_tray__write_uid
+#: model:ir.model.fields,field_description:buffet.field_tray_tray__write_uid
+msgid "Last Updated by"
+msgstr "Actualizado por última vez por"
+
+#. module: buffet
+#: model:ir.model.fields,field_description:buffet.field_buffet_buffet__write_date
+#: model:ir.model.fields,field_description:buffet.field_buffet_details__write_date
+#: model:ir.model.fields,field_description:buffet.field_buffet_kitchen__write_date
+#: model:ir.model.fields,field_description:buffet.field_buffet_line__write_date
+#: model:ir.model.fields,field_description:buffet.field_buffet_location__write_date
+#: model:ir.model.fields,field_description:buffet.field_buffet_menu__write_date
+#: model:ir.model.fields,field_description:buffet.field_buffet_menu_item__write_date
+#: model:ir.model.fields,field_description:buffet.field_refill_order__write_date
+#: model:ir.model.fields,field_description:buffet.field_removing_tray__write_date
+#: model:ir.model.fields,field_description:buffet.field_tray_tray__write_date
+msgid "Last Updated on"
+msgstr "Actualizado el"
+
+#. module: buffet
+#: model:ir.model.fields,field_description:buffet.field_removing_tray__location_id
+msgid "Location"
+msgstr "Ubicación"
+
+#. module: buffet
+#: model_terms:ir.ui.view,arch_db:buffet.buffet_location_views_kanban
+msgid "Location:"
+msgstr "Ubicación"
+
+#. module: buffet
+#: model:ir.actions.act_window,name:buffet.buffet_kitchen_order_action
+msgid "Manufacturing Order"
+msgstr "Ubicación"
+
+#. module: buffet
+#: model:ir.model.fields,field_description:buffet.field_buffet_buffet__menu_type_id
+msgid "Menu"
+msgstr "Menú"
+
+#. module: buffet
+#: model:ir.actions.act_window,name:buffet.buffet_type_menu_action
+#: model:ir.model.fields,field_description:buffet.field_buffet_menu_item__menu_type_id
+msgid "Menu Type"
+msgstr "Tipo de menú"
+
+#. module: buffet
+#: model:ir.ui.menu,name:buffet.buffet_menu_type
+msgid "Menu Type "
+msgstr "Tipo de menú"
+
+#. module: buffet
+#: model_terms:ir.ui.view,arch_db:buffet.buffet_location_views_kanban
+msgid "Menu Type :"
+msgstr "Tipo de menú"
+
+#. module: buffet
+#: model:ir.model.fields,field_description:buffet.field_buffet_menu__type
+msgid "MenuType"
+msgstr "Tipo de menú"
+
+#. module: buffet
+#: model:ir.model.fields,field_description:buffet.field_buffet_buffet__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: buffet
+#: model:ir.model.fields,field_description:buffet.field_buffet_details__origin
+#: model_terms:ir.ui.view,arch_db:buffet.buffet_location_views_kanban
+msgid "Order"
+msgstr "Pida"
+
+#. module: buffet
+#: model:ir.model.fields,field_description:buffet.field_product_tray__picking_id
+#: model:ir.model.fields,field_description:buffet.field_refill_order__origin_id
+msgid "Origin"
+msgstr "Origen"
+
+#. module: buffet
+#: model:ir.model.fields,field_description:buffet.field_removing_tray__picking_id
+msgid "Picking"
+msgstr "Recogiendo"
+
+#. module: buffet
+#: model:ir.model.fields,field_description:buffet.field_product_tray__product_id
+#: model:ir.model.fields,field_description:buffet.field_refill_order__product_id
+#: model:ir.model.fields,field_description:buffet.field_removing_tray__product_id
+msgid "Product"
+msgstr "Producto"
+
+#. module: buffet
+#: model:ir.model,name:buffet.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr "Movimientos de Producto (Stock Move Line)"
+
+#. module: buffet
+#: model:ir.model.fields,field_description:buffet.field_mrp_production__product_tray
+#: model:ir.model.fields,field_description:buffet.field_stock_scrap__product_tray_id
+msgid "Product Tray"
+msgstr "Bandeja de productos"
+
+#. module: buffet
+#: model:ir.model,name:buffet.model_mrp_production
+msgid "Production Order"
+msgstr "Orden de producción"
+
+#. module: buffet
+#: model:ir.actions.act_window,name:buffet.buffet_product_form
+#: model:ir.ui.menu,name:buffet.buffet_product_item
+msgid "Products"
+msgstr "Productos"
+
+#. module: buffet
+#: model_terms:ir.ui.view,arch_db:buffet.view_add_mrp_tray
+msgid "Put in  Tray"
+msgstr "Poner en la bandeja"
+
+#. module: buffet
+#: model:ir.model.fields,field_description:buffet.field_buffet_line__quantity
+#: model:ir.model.fields,field_description:buffet.field_product_tray__quantity
+#: model:ir.model.fields,field_description:buffet.field_refill_order__quantity
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: buffet
+#: model:ir.model.fields,field_description:buffet.field_mrp_production__tray_quantity
+msgid "Quantity for tray"
+msgstr "Cantidad por bandeja"
+
+#. module: buffet
+#: model_terms:ir.ui.view,arch_db:buffet.buffet_location_views_kanban
+#: model_terms:ir.ui.view,arch_db:buffet.buffet_views_form
+msgid "Refill"
+msgstr "Rellenar"
+
+#. module: buffet
+#: model:ir.actions.act_window,name:buffet.buffet_refill_action
+msgid "Refill  Order"
+msgstr "Orden de reposición"
+
+#. module: buffet
+#: model:ir.ui.menu,name:buffet.buffet_menu_refill_kitchen
+msgid "Refill Buffet"
+msgstr "Buffet de recarga"
+
+#. module: buffet
+#: model:ir.model.fields,field_description:buffet.field_stock_picking__remove
+#: model_terms:ir.ui.view,arch_db:buffet.buffet_details_form_view
+#: model_terms:ir.ui.view,arch_db:buffet.buffet_remove_order_tree
+msgid "Remove"
+msgstr "Eliminar"
+
+#. module: buffet
+#: model:ir.actions.act_window,name:buffet.buffet_remove_action
+#: model:ir.ui.menu,name:buffet.tray_removing_order
+msgid "Removing Order"
+msgstr "Orden de retirada"
+
+#. module: buffet
+#: model:ir.ui.menu,name:buffet.buffet_removing
+msgid "Removing Request"
+msgstr "Solicitud de eliminación"
+
+#. module: buffet
+#: model:ir.actions.server,name:buffet.remove_tray_cron_ir_actions_server
+#: model:ir.cron,cron_name:buffet.remove_tray_cron
+#: model:ir.cron,name:buffet.remove_tray_cron
+msgid "Removing Tray "
+msgstr "Retirada de la bandeja"
+
+#. module: buffet
+#: model_terms:ir.ui.view,arch_db:buffet.buffet_remove_order_form
+msgid "Request"
+msgstr "Solicite"
+
+#. module: buffet
+#: model_terms:ir.ui.view,arch_db:buffet.buffet_views_form
+msgid "Request To Cook"
+msgstr "Solicitud para cocinar"
+
+#. module: buffet
+#: model:ir.model.fields.selection,name:buffet.selection__buffet_buffet__state__requested
+msgid "Requested"
+msgstr "Solicitado"
+
+#. module: buffet
+#: model:ir.model.fields,field_description:buffet.field_buffet_menu_item__User_id
+msgid "Responsible Person"
+msgstr "Persona responsable"
+
+#. module: buffet
+#: model_terms:ir.ui.view,arch_db:buffet.buffet_details_form_view
+#: model_terms:ir.ui.view,arch_db:buffet.buffet_remove_order_tree
+msgid "Return"
+msgstr "Volver"
+
+#. module: buffet
+#: model:ir.model,name:buffet.model_stock_scrap
+#: model_terms:ir.ui.view,arch_db:buffet.buffet_remove_order_tree
+msgid "Scrap"
+msgstr "Desechar"
+
+#. module: buffet
+#: model:ir.model.fields,field_description:buffet.field_buffet_buffet__state
+#: model:ir.model.fields,field_description:buffet.field_removing_tray__state
+msgid "State"
+msgstr "Estado"
+
+#. module: buffet
+#: model:ir.model,name:buffet.model_stock_move
+msgid "Stock Move"
+msgstr "Movimiento de Stock"
+
+#. module: buffet
+#: model_terms:ir.ui.view,arch_db:buffet.buffet_menu_form
+#: model_terms:ir.ui.view,arch_db:buffet.buffet_refill_order_form
+#: model_terms:ir.ui.view,arch_db:buffet.buffet_remove_order_form
+#: model_terms:ir.ui.view,arch_db:buffet.buffet_views_form
+msgid "Test"
+msgstr "Prueba"
+
+#. module: buffet
+#: model_terms:ir.ui.view,arch_db:buffet.buffet_search_view
+msgid "Today"
+msgstr "Hoy"
+
+#. module: buffet
+#: model:ir.actions.act_window,name:buffet.buffet_today_action
+msgid "Today's Order"
+msgstr "Pedido de hoy"
+
+#. module: buffet
+#: model:ir.ui.menu,name:buffet.buffet_order_item_today
+msgid "Today's Orders"
+msgstr "Pedido de hoy"
+
+#. module: buffet
+#: model:ir.model,name:buffet.model_stock_picking
+#: model:ir.model.fields,field_description:buffet.field_mrp_production__transfer_id
+msgid "Transfer"
+msgstr "Transferir"
+
+#. module: buffet
+#: model:ir.ui.menu,name:buffet.buffet_new_order
+msgid "Transfer Orders"
+msgstr "Órdenes de transferencia"
+
+#. module: buffet
+#: model:ir.actions.act_window,name:buffet.buffet_transfer_order_action
+msgid "Transfer's Order"
+msgstr "Órdenes de transferencia"
+
+#. module: buffet
+#: model:ir.actions.act_window,name:buffet.view_tray_action
+#: model:ir.actions.act_window,name:buffet.view_tray_view_action
+#: model:ir.model.fields,field_description:buffet.field_mrp_production__tray_id
+#: model:ir.model.fields,field_description:buffet.field_product_tray__tray_id
+#: model:ir.model.fields,field_description:buffet.field_removing_tray__tray_id
+#: model:ir.model.fields,field_description:buffet.field_stock_move__tray_id
+#: model:ir.model.fields,field_description:buffet.field_stock_move_line__tray_id
+#: model:ir.model.fields,field_description:buffet.field_tray_tray__tray
+#: model:ir.ui.menu,name:buffet.tray_menu_root
+#: model:ir.ui.menu,name:buffet.tray_menu_root_buffet
+#: model_terms:ir.ui.view,arch_db:buffet.view_add_mrp_tray
+msgid "Tray"
+msgstr "Bandeja"
+
+#. module: buffet
+#: model_terms:ir.ui.view,arch_db:buffet.buffet_details_form_view
+msgid "Tray Details"
+msgstr "Tray Details"
+
+#. module: buffet
+#: model:mail.template,name:buffet.exp_notification_email_template
+msgid "Tray Removing Notification"
+msgstr "Notificación de eliminación de la bandeja"
+
+#. module: buffet
+#: model:ir.actions.act_window,name:buffet.tray_remove_action
+msgid "Tray Removing Order"
+msgstr "Orden de retirada de bandejas"
+
+#. module: buffet
+#: model:ir.model.fields,field_description:buffet.field_buffet_details__tray_ids
+msgid "Tray line"
+msgstr "Línea de bandejas"
+
+#. module: buffet
+#: model_terms:ir.ui.view,arch_db:buffet.buffet_views_list
+msgid "Tree"
+msgstr "Árbol"
+
+#. module: buffet
+#: model:ir.model.fields,field_description:buffet.field_tray_tray__type
+msgid "Type"
+msgstr "Tipo"
+
+#. module: buffet
+#: model:ir.model.fields,field_description:buffet.field_product_tray__write_date
+msgid "Write Date"
+msgstr "Escriba la fecha"
+
+#. module: buffet
+#: model_terms:ir.ui.view,arch_db:buffet.buffet_menu_item_form
+#: model_terms:ir.ui.view,arch_db:buffet.buffet_menu_item_tree
+#: model_terms:ir.ui.view,arch_db:buffet.buffet_search_view
+msgid "buffet"
+msgstr "buffet"
+
+#. module: buffet
+#: model:ir.model.fields,help:buffet.field_buffet_line__buffet_id
+msgid "buffet location"
+msgstr "ubicación del buffet"
+
+#. module: buffet
+#: model:ir.model,name:buffet.model_buffet_buffet
+msgid "buffet.buffet"
+msgstr "buffet.buffet"
+
+#. module: buffet
+#: model:ir.model,name:buffet.model_buffet_details
+msgid "buffet.details"
+msgstr "buffet.detalles"
+
+#. module: buffet
+#: model:ir.model,name:buffet.model_buffet_kitchen
+msgid "buffet.kitchen"
+msgstr ""
+
+#. module: buffet
+#: model:ir.model,name:buffet.model_buffet_line
+msgid "buffet.line"
+msgstr ""
+
+#. module: buffet
+#: model:ir.model,name:buffet.model_buffet_location
+msgid "buffet.location"
+msgstr ""
+
+#. module: buffet
+#: model:ir.model,name:buffet.model_buffet_menu
+msgid "buffet.menu"
+msgstr ""
+
+#. module: buffet
+#: model:ir.model,name:buffet.model_buffet_menu_item
+msgid "buffet.menu.item"
+msgstr ""
+
+#. module: buffet
+#: model:ir.model.fields.selection,name:buffet.selection__buffet_buffet__state__cancel
+msgid "cancelled"
+msgstr "cancelado"
+
+#. module: buffet
+#: model:ir.model.fields,help:buffet.field_buffet_buffet__date
+msgid "create date of buffet order"
+msgstr "fecha de creación de la orden de buffet"
+
+#. module: buffet
+#: model:ir.model.fields.selection,name:buffet.selection__removing_tray__state__draft
+msgid "draft "
+msgstr "borrador"
+
+#. module: buffet
+#: model:ir.model.fields,help:buffet.field_stock_picking__remove
+msgid "for identify the tray is removed "
+msgstr "para identificar la bandeja se retira"
+
+#. module: buffet
+#: model:ir.model.fields,help:buffet.field_buffet_line__product_id
+msgid "item of buffet"
+msgstr "artículo del buffet"
+
+#. module: buffet
+#: model:ir.model.fields,help:buffet.field_buffet_buffet__buffet_id
+#: model:ir.model.fields,help:buffet.field_buffet_location__location_id
+msgid "location of buffet"
+msgstr "ubicación del buffet"
+
+#. module: buffet
+#: model:ir.model.fields,help:buffet.field_buffet_menu_item__product_ids
+msgid "menu items in buffet line"
+msgstr "elementos de menú en la línea de buffet"
+
+#. module: buffet
+#: model:ir.model.fields,help:buffet.field_buffet_menu__type
+msgid "menu type like breakfast, lunch etc "
+msgstr "tipo de menú, como el desayuno, el almuerzo, etc."
+
+#. module: buffet
+#: model:ir.model.fields.selection,name:buffet.selection__buffet_buffet__state__draft
+msgid "new"
+msgstr "nuevo"
+
+#. module: buffet
+#: model:ir.model,name:buffet.model_product_tray
+msgid "product.tray"
+msgstr ""
+
+#. module: buffet
+#: model:ir.model.fields,help:buffet.field_buffet_line__quantity
+msgid "quantity need at the buffet"
+msgstr "cantidad necesaria en el buffet"
+
+#. module: buffet
+#: model:ir.model.fields,help:buffet.field_mrp_production__tray_quantity
+msgid "quantity of item needs for tray"
+msgstr "cantidad de artículos necesarios para la bandeja"
+
+#. module: buffet
+#: model:ir.model,name:buffet.model_refill_order
+msgid "refill.order"
+msgstr ""
+
+#. module: buffet
+#: model:ir.model.fields,help:buffet.field_refill_order__product_id
+msgid "refilling item"
+msgstr ""
+
+#. module: buffet
+#: model:ir.model.fields,field_description:buffet.field_removing_tray__remove
+#: model_terms:ir.ui.view,arch_db:buffet.buffet_remove_order_tree
+msgid "remove"
+msgstr "eliminar"
+
+#. module: buffet
+#: model:ir.model.fields.selection,name:buffet.selection__removing_tray__state__remove
+msgid "removed"
+msgstr "eliminado"
+
+#. module: buffet
+#: model:ir.model,name:buffet.model_removing_tray
+msgid "removing.tray"
+msgstr ""
+
+#. module: buffet
+#: model:ir.model.fields,help:buffet.field_buffet_menu_item__User_id
+msgid "responsible person of buffet"
+msgstr "persona responsable del buffet"
+
+#. module: buffet
+#: model:ir.model,name:buffet.model_tray_tray
+msgid "tray.tray"
+msgstr ""
+
+#. module: buffet
+#: model:ir.model.fields,help:buffet.field_buffet_buffet__menu_type_id
+#: model:ir.model.fields,help:buffet.field_buffet_menu_item__menu_type_id
+msgid "type of menu"
+msgstr "tipo de menú"
+
+#. module: buffet
+#: model:mail.template,subject:buffet.exp_notification_email_template
+msgid "{{ ctx['buffet'] }} Expiration Warning  {{ ctx['tray_id'] }}  "
+msgstr "Aviso de caducidad "

@@ -1,0 +1,181 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* fisa_purchase
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-09-01 12:27+0000\n"
+"PO-Revision-Date: 2022-09-01 12:27+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: fisa_purchase
+#: model_terms:ir.ui.view,arch_db:fisa_purchase.view_purchase_order_custom
+msgid ""
+"<strong>Please sent this Request  to Executive Management  This Order has an"
+" extraordinary expense</strong>"
+msgstr "Por favor, envíe esta solicitud a la dirección ejecutiva Esta orden tiene un gasto extraordinario   ``"
+
+#. module: fisa_purchase
+#: model:res.groups,name:fisa_purchase.group_commision_plan_Tab
+msgid "Accounting and Financial Management"
+msgstr "Contabilidad y gestión financiera"
+
+#. module: fisa_purchase
+#: model:ir.actions.act_window,name:fisa_purchase.purchase_approval_request_action_to_review_order
+msgid "Approval  To review"
+msgstr "Aprobación Revisar"
+
+#. module: fisa_purchase
+#: model:ir.actions.act_window,name:fisa_purchase.purchase_approval_request_action_to_review
+#: model:ir.ui.menu,name:fisa_purchase.purchase_approval_menu_to_review
+#: model:ir.ui.menu,name:fisa_purchase.purchase_approval_menu_to_review_order
+msgid "Approvals to Review"
+msgstr "Aprobación Revisar"
+
+#. module: fisa_purchase
+#: model_terms:ir.ui.view,arch_db:fisa_purchase.view_purchase_order_custom
+msgid "Approve"
+msgstr "Aprobar"
+
+#. module: fisa_purchase
+#: model_terms:ir.ui.view,arch_db:fisa_purchase.view_purchase_order_custom
+msgid "Approve Order"
+msgstr "Aprobar la orden"
+
+#. module: fisa_purchase
+#: model:ir.actions.act_window,name:fisa_purchase.purchase_approval_request_action_to_approved
+msgid "Approved  Budget"
+msgstr "Presupuesto aprobado"
+
+#. module: fisa_purchase
+#: model:ir.ui.menu,name:fisa_purchase.purchase_approval_menu_to_approved
+msgid "Approved Budget"
+msgstr "Presupuesto aprobado"
+
+#. module: fisa_purchase
+#: model:ir.ui.menu,name:fisa_purchase.purchase_approval_menu_to_approved_order
+msgid "Approved Order"
+msgstr "Orden aprobada"
+
+#. module: fisa_purchase
+#: model:ir.actions.act_window,name:fisa_purchase.purchase_approval_request_action_to_approved_order
+msgid "Approved Orders"
+msgstr "Órdenes aprobadas"
+
+#. module: fisa_purchase
+#: model:ir.ui.menu,name:fisa_purchase.purchase_check_menu_budget
+msgid "Budget "
+msgstr "Presupuesto"
+
+#. module: fisa_purchase
+#: model:ir.ui.menu,name:fisa_purchase.purchase_approval_menu_budget
+msgid "Budget Approvals"
+msgstr "Aprobación del presupuesto"
+
+#. module: fisa_purchase
+#: model:res.groups,name:fisa_purchase.group_commision_Executive_Management
+msgid "Budget Approve"
+msgstr "Presupuesto Aprobado"
+
+#. module: fisa_purchase
+#: model:ir.actions.act_window,name:fisa_purchase.purchase_approval_request_action_to_check
+msgid "Check  Budget"
+msgstr "Comprobar el presupuesto"
+
+#. module: fisa_purchase
+#: model:ir.model.fields,field_description:fisa_purchase.field_purchase_order__check_amount
+msgid "Check Amount"
+msgstr "Importe del cheque"
+
+#. module: fisa_purchase
+#: model:ir.ui.menu,name:fisa_purchase.purchase_approval_menu_to_check
+#: model_terms:ir.ui.view,arch_db:fisa_purchase.view_purchase_order_custom
+msgid "Check Budget"
+msgstr "Comprobar el presupuesto"
+
+#. module: fisa_purchase
+#: model:ir.actions.act_window,name:fisa_purchase.purchase_approval_request_action_to_checked
+msgid "Checked  Budget"
+msgstr "Presupuesto comprobado"
+
+#. module: fisa_purchase
+#: model:ir.ui.menu,name:fisa_purchase.purchase_approval_menu_to_checked
+msgid "Checked Budget"
+msgstr "Presupuesto comprobado"
+
+#. module: fisa_purchase
+#: model_terms:ir.ui.view,arch_db:fisa_purchase.view_purchase_order_custom
+msgid "Disapprove"
+msgstr "Desaprobar"
+
+#. module: fisa_purchase
+#: model_terms:ir.ui.view,arch_db:fisa_purchase.view_purchase_order_custom
+msgid "Disapprove Order"
+msgstr "Desaprobar la orden"
+
+#. module: fisa_purchase
+#: model:ir.model,name:fisa_purchase.model_mail_compose_message
+msgid "Email composition wizard"
+msgstr "Asistente de redacción de correo electrónico"
+
+#. module: fisa_purchase
+#: model:res.groups,name:fisa_purchase.group_purchase_management_Executive_Management
+msgid "Logistics Purchase Management "
+msgstr "Gestión de Compras Logísticas "
+
+#. module: fisa_purchase
+#: model_terms:ir.actions.act_window,help:fisa_purchase.purchase_approval_request_action_to_review
+msgid "No new approvals to review"
+msgstr "No hay nuevas aprobaciones que revisar"
+
+#. module: fisa_purchase
+#: model:ir.ui.menu,name:fisa_purchase.purchase_approval_order_menu
+msgid "Purchase Approvals "
+msgstr "Aprobación de compras"
+
+#. module: fisa_purchase
+#: model:ir.model,name:fisa_purchase.model_purchase_order
+msgid "Purchase Order"
+msgstr "Orden de Compra"
+
+#. module: fisa_purchase
+#: model_terms:ir.ui.view,arch_db:fisa_purchase.view_purchase_order_custom
+msgid "Send To Approve"
+msgstr "Enviar para aprobar""
+
+#. module: fisa_purchase
+#: model:ir.model.fields,field_description:fisa_purchase.field_purchase_order__state
+msgid "Status"
+msgstr "Estado"
+
+#. module: fisa_purchase
+#: model:ir.model.fields.selection,name:fisa_purchase.selection__purchase_order__state__approved
+msgid "approved order"
+msgstr "orden aprobada"
+
+#. module: fisa_purchase
+#: model:ir.model.fields.selection,name:fisa_purchase.selection__purchase_order__state__checked
+msgid "checked budget "
+msgstr "presupuesto verificado"
+
+#. module: fisa_purchase
+#: model:ir.model.fields.selection,name:fisa_purchase.selection__purchase_order__state__manager_approved
+msgid "manager approved budget"
+msgstr "presupuesto aprobado por el director"
+
+#. module: fisa_purchase
+#: model:ir.model.fields.selection,name:fisa_purchase.selection__purchase_order__state__sent_to_approve
+msgid "sent to manager"
+msgstr "enviado al gerente"
+
+#. module: fisa_purchase
+#: model:ir.model.fields.selection,name:fisa_purchase.selection__purchase_order__state__waiting_approval
+msgid "waiting for approval"
+msgstr "a la espera de la aprobación"

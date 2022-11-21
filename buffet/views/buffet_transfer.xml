@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="stock_inherited_stock_picking_form_view" model="ir.ui.view">
+        <field name="name">stock.view_picking_form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <field name="origin" position="after">
+                <field name="buffet" invisible="1"/>
+                                <field name="tray"/>
+
+
+            </field>
+            <xpath expr="//notebook/page/field[@name='move_ids_without_package']/tree/ field[@name='product_id']"
+                   position="after">
+
+                <field name="tray_id"/>
+                <field name="exp_hour"/>
+            </xpath>
+
+        </field>
+
+    </record>
+    <record id="buffet_transfer_order_action" model="ir.actions.act_window">
+        <field name="name">Transfer's Order</field>
+        <field name="res_model">stock.picking</field>
+        <field name="domain">[('picking_type_id.name','=','Internal Transfers')]</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+    <menuitem id="buffet_menu_root" name="Buffet"
+              action="buffet_transfer_order_action"
+              web_icon="buffet,static/description/icon.png" />
+    <menuitem id="buffet_new_order" name="Transfer Orders"
+              action="buffet_transfer_order_action"
+              parent="buffet.buffet_menu_root"
+              sequence="3" groups="buffet.group_buffet_apply_order"/>
+</odoo>

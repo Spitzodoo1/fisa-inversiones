@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+        <record id="exp_notification_email_template" model="mail.template">
+            <field name="name">Tray Removing Notification</field>
+            <field name="model_id" ref="buffet.model_removing_tray"/>
+            <field name="email_from">{{ ctx["from_email"] }}</field>
+            <field name="email_to">{{ ctx["to_email"] }}</field>
+            <field name="subject">{{ ctx['buffet'] }} Expiration Warning  {{ ctx['tray_id'] }}  </field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <div style="margin: 0px; padding: 0px;">
+                        <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                            Dear
+                            <t t-esc="ctx['user']">
+                            </t>
+
+                            <br/>
+                            Here is a warning that the expiration hours  of
+                            <t t-esc="ctx['tray_id']">
+                            </t> is exceed
+
+                            Could you please confirm it will be removed from the buffet
+                            <t t-esc="ctx['buffet']"/>.
+                        </p>
+                    </div>
+
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

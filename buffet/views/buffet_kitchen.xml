@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="buffet_kitchen_order_action" model="ir.actions.act_window">
+        <field name="name">Manufacturing Order</field>
+        <field name="res_model">mrp.production</field>
+                 <field name="domain">[('origin','like','BFOR')]</field>
+
+        <field name="view_mode">tree,form</field>
+    </record>
+     <record id="buffet_kitchen_refill_action" model="ir.actions.act_window">
+        <field name="name">Buffet Picking</field>
+        <field name="res_model">stock.picking</field>
+         <field name="domain">[('origin','like','BFOR')]</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+          <menuitem id="buffet_menu_kitchen_root" name="Kitchen"
+           parent="buffet.buffet_menu_root" groups="buffet.group_buffet_apply_order"/>
+         <menuitem id="buffet_menu_kitchen" name="Buffet Kitchen" action="buffet_kitchen_order_action"
+        parent="buffet.buffet_menu_kitchen_root" groups="buffet.group_buffet_apply_order"/>
+        <menuitem id="buffet_menu_refill_kitchen" name="Refill Buffet" action="buffet_kitchen_refill_action"
+        parent="buffet.buffet_menu_kitchen_root" groups="buffet.group_buffet_apply_order"/>
+</odoo>

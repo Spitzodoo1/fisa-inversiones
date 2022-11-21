@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="approval_order_view_inherit_barcode1" model="ir.ui.view">
+            <field name="name">approval.product.tree.inherit</field>
+            <field name="model">approval.product.line</field>
+            <field name="inherit_id" ref="approvals.approval_product_line_view_tree"/>
+            <field name="arch" type="xml">
+               <field name="product_id" position="before">
+                        <field name ="barcode_scan"/>
+               </field>
+            </field>
+        </record>
+    </data>
+</odoo>

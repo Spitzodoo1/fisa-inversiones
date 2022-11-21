@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="buffet_line_action" model="ir.actions.act_window">
+        <field name="name">Buffet</field>
+        <field name="res_model">buffet.location</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+    <record id="buffet_order_action" model="ir.actions.act_window">
+        <field name="name">Buffet</field>
+        <field name="res_model">buffet.buffet</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+    <record id="buffet_views_form" model="ir.ui.view">
+        <field name="name">buffet.buffet.form</field>
+        <field name="model">buffet.buffet</field>
+        <field name="arch" type="xml">
+            <form string="Test">
+                <header>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,requested,delivered"/>
+
+                    <button name="button_conform" string="Request To Cook"
+                            type="object"/>
+
+
+                    <button name="re_send" string="Refill" type="object"/>
+
+
+                </header>
+
+                <sheet>
+
+
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="buffet_id"/>
+                            <field name="create_date"/>
+                            <field name="buffet_check" invisible="1"/>
+                            <field name="menu_type_id"/>
+
+
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Buffet Line">
+
+                            <field name="buffet_line_ids">
+                                <tree editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="quantity"/>
+                                    <field name="available"
+                                           style="color:green;"/>
+
+
+                                </tree>
+                            </field>
+
+                        </page>
+
+                    </notebook>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+    <record id="buffet_views_list" model="ir.ui.view">
+        <field name="name">buffet.buffet.tree</field>
+        <field name="model">buffet.buffet</field>
+        <field name="arch" type="xml">
+            <tree string="Tree">
+                <field name="name"/>
+                <field name="buffet_id"/>
+                <field name="date"/>
+                <field name="menu_type_id"/>
+
+
+            </tree>
+        </field>
+    </record>
+    <record id="buffet_location_views_kanban" model="ir.ui.view">
+        <field name="name">buffet.buffet.kanban</field>
+        <field name="model">buffet.buffet</field>
+        <field name="arch" type="xml">
+            <kanban class="o_buffet_buffet_kanban">
+                <field name="buffet_id"/>
+                <field name="menu_type_id"/>
+
+
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click o_buffet_buffet_kanban">
+                            <div class="oe_kanban_details">
+                                <strong class="o_kanban_record_title o_buffet_buffet_heading"
+                                        style="font-size:16px;">Location:
+                                    <field name="buffet_id"
+                                           style="display:block;"/><br/>
+                                    <span class="pull-left text-left" style="font-size:16px; color:red; font-weight: normal;">Menu Type :
+                                    <field name="menu_type_id"
+                                           style="display:block;"/>
+                                    </span>
+                                </strong><br/>
+                                <span class="pull-left text-left " style="font-size:16px; color:red; font-weight: bold; ">
+                                    <a name="buffet_order" type="object"  class="pull-left text-right "><div>Order</div>
+                                    </a><br/>
+                                    <a name="refill_order"  class="pull-left text-right" type="object">
+                                        Refill
+                                    </a>
+                                </span><br/>
+
+
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <record id="buffet_search_view" model="ir.ui.view">
+
+        <field name="name">buffet.search.view</field>
+
+        <field name="model">buffet.buffet</field>
+
+        <field name="arch" type="xml">
+
+            <search string="buffet">
+
+                <filter name="buffet_id" string="Buffet Location"
+                        context="{'group_by':'buffet_id'}"/>
+               <filter name="date_filter" string="Today" domain="[('create_date', '&gt;', (context_today() - datetime.timedelta(days=1)).strftime('%%Y-%%m-%%d'))]"/>
+            </search>
+
+        </field>
+
+
+    </record>
+
+
+    <record id="buffet_today_action" model="ir.actions.act_window">
+        <field name="name">Today's Order</field>
+        <field name="res_model">buffet.buffet</field>
+        <field name="context">{'search_default_date_filter':1}</field>
+        <field name="search_view_id" ref="buffet.buffet_search_view"/>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+<!--    <menuitem id="buffet_menu_root" name="Fisa Buffet"-->
+<!--    web_icon="buffet,static/-->
+<!--              description/icon.png"/>-->
+    <menuitem id="buffet_order_item" name="Buffet Orders"
+              parent="buffet.buffet_menu_root"/>
+    <menuitem id="buffet_order_item_user" name="Buffet Orders"
+              action="buffet_order_action" parent="buffet.buffet_order_item"
+              sequence="1" groups="buffet.group_buffet_request"
+    />
+
+    <menuitem id="buffet_order_item_today" name="Today's Orders"
+              action="buffet_today_action" parent="buffet.buffet_order_item"
+              sequence="5" groups="buffet.group_buffet_request"
+    />
+
+
+    <menuitem id="buffet_location" name="Buffet Location"
+              action="buffet_line_action" parent="buffet.buffet_order_item"
+              sequence="10"/>
+
+</odoo>

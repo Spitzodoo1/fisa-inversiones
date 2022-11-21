@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+     <record id="view_mrp_pack" model="ir.ui.view">
+        <field name="name">manufacture.pack.view.inherited</field>
+        <field name="model">stock.quant.package</field>
+
+          <field name="inherit_id" ref="stock.view_quant_package_form"/>
+        <field name="arch" type="xml">
+            <field name="location_id" position="after">
+
+                     <field name="weight"/>
+                <field name="uom_id"/>
+                <field name="exp_date"/>
+
+            </field>
+        </field>
+    </record>
+
+</odoo>

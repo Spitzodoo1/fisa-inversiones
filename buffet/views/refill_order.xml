@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="buffet_refill_action" model="ir.actions.act_window">
+        <field name="name">Refill  Order</field>
+        <field name="res_model">refill.order</field>
+        <field name="view_mode">form</field>
+    </record>
+    <record id="buffet_refill_order_form" model="ir.ui.view">
+        <field name="name">refill.order.form</field>
+        <field name="model">refill.order</field>
+        <field name="arch" type="xml">
+            <form string="Test">
+
+                <sheet>
+                    <group>
+                        <group>
+                       <field name="product_id"/>
+                            <field name="quantity"/>
+                            <field name="origin_id"/>
+                        </group>
+                    </group>
+                </sheet>
+                  <footer>
+                      <button name="button_conform"  class="oe_highlight"  type="object" string="Conform"/>
+                 </footer>
+            </form>
+        </field>
+    </record>
+
+
+</odoo>
