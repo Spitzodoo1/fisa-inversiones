@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="cabin_class_action" model="ir.actions.act_window">
+        <field name="name">Cabin Class</field>
+        <field name="res_model">cabin.class</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="category_details_view" model="ir.ui.view">
+        <field name="name">cabin.class.form</field>
+        <field name="model">cabin.class</field>
+        <field name="arch" type="xml">
+            <form string="menu">
+                <sheet>
+                        <group>
+                       <field name="code"/>
+                            <field name="name"/>
+                        </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="cabin_details_tree" model="ir.ui.view">
+        <field name="name">cabin.class.tree</field>
+        <field name="model">cabin.class</field>
+        <field name="arch" type="xml">
+            <tree string="menu">
+
+                       <field name="code"/>
+                            <field name="name"/>
+
+            </tree>
+        </field>
+    </record>
+     <record id="cabin_class_search_view" model="ir.ui.view">
+        <field name="name">cabin.class.view.search</field>
+        <field name="model">cabin.class</field>
+        <field name="arch" type="xml">
+            <search string="Cabin Class">
+
+                <filter name="code" string="Cabin Class"
+                        context="{'group_by':'code'}"/>
+                <filter name="code" string="Code"/>
+                <filter name="name" string="Cabin Class"
+                        context="{'group_by':'name'}"/>
+                <filter name="name" string="Cabin Class"/>
+            </search>
+        </field>
+    </record>
+        <menuitem id="cabin_class_details" name="Cabin Class" action="cabin_class_action" parent="airport_lounge.passenger_configuration"/>
+
+</odoo>
+

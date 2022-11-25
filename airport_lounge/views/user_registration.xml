@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="user_registration_action" model="ir.actions.act_window">
+        <field name="name">User Registration</field>
+        <field name="res_model">user.registration</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="user_registration_form" model="ir.ui.view">
+        <field name="name">user.registration.form</field>
+        <field name="model">user.registration</field>
+        <field name="arch" type="xml">
+            <form string="menu">
+                <sheet>
+                    <header>
+                        <button name="register" string="Register" type="object"
+                                class="oe_highlight"/>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,register"/>
+                    </header>
+                    <group>
+                        <group>
+                            <field name="identification"/>
+                            <field name="type_of_client_id"/>
+                            <field name="airline_id"/>
+                            <field name="ticket_number"/>
+                            <field name="country_of_destiny_id"/>
+                            <field name="city_of_destiny"/>
+                            <field name="commercial_name"/>
+                            <field name="legal_name"/>
+                            <field name="vat_number"/>
+                        </group>
+                        <group name="Personal Details">
+                            <group>
+                                <field name="name"/>
+                                <field name="phone"/>
+                                <field name="age"/>
+                                <field name="email"/>
+                                <field name="ticket_class"/>
+                                <field name="date_entrance"/>
+                                <field name="hour"/>
+                                <field name="date_of_exit"/>
+                                <field name="hour_of_exit"/>
+                                <field name="date_of_flight"/>
+                                <field name="hour_of_flight"/>
+                                <field name="pass_port_no"/>
+                            </group>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="user_registration_tree" model="ir.ui.view">
+        <field name="name">user.registration.tree</field>
+        <field name="model">user.registration</field>
+        <field name="arch" type="xml">
+            <tree string="user">
+                <field name="identification"/>
+                <field name="type_of_client_id"/>
+                <field name="airline_id"/>
+                <field name="ticket_number"/>
+                <field name="country_of_destiny_id"/>
+                <field name="city_of_destiny"/>
+                <field name="commercial_name"/>
+                <field name="legal_name"/>
+                <field name="vat_number"/>
+                <field name="name"/>
+                <field name="ticket_class"/>
+                <field name="date_entrance"/>
+                <field name="date_of_exit"/>
+            </tree>
+        </field>
+    </record>
+    <record id="user_search_view" model="ir.ui.view">
+        <field name="name">user.registration.view.search</field>
+        <field name="model">user.registration</field>
+        <field name="arch" type="xml">
+            <search string="Identification">
+                <filter name="identification" string="Buffet Location"
+                        context="{'group_by':'identification'}"/>
+                <filter name="date_filter" string="Identification Number"/>
+            </search>
+
+        </field>
+    </record>
+    <menuitem id="airport_lounge_root" name="Airport Lounge"/>
+    <menuitem id="user_registration" action="user_registration_action"
+              name="User Registration"
+              parent="airport_lounge.airport_lounge_root" sequence="1"/></odoo>
+

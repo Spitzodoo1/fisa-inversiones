@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="alliance_group_action" model="ir.actions.act_window">
+        <field name="name">Alliance Group</field>
+        <field name="res_model">alliance.group</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="alliance_group_view" model="ir.ui.view">
+        <field name="name">alliance.group.form</field>
+        <field name="model">alliance.group</field>
+        <field name="arch" type="xml">
+            <form string="menu">
+                <sheet>
+                    <header>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,active,deactive,cancel"/>
+                        <button name="cancel_group" string="Cancel"
+                                class="oe_highlight"/>
+
+                    </header>
+                    <group>
+
+                        <field name="id" invisible="1"/>
+                        <field name="code"
+                               attrs="{'readonly': [('id', '!=', False)]}"/>
+                        <field name="description"/>
+
+
+                    </group>
+                    <button name="activate_group" class="oe_highlight ml4"
+                            type="object" string="Activate"/>
+                    <span>
+                        <button name="deactivate_group" class="oe_highlight ml4"
+                                type="object" string="Deactivate"/>
+                    </span>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="alliance_group_view_tree" model="ir.ui.view">
+        <field name="name">alliance.group.tree</field>
+        <field name="model">alliance.group</field>
+        <field name="arch" type="xml">
+            <tree string="menu">
+
+                <field name="code"/>
+                <field name="description"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    <record id="alliance_group_search_view" model="ir.ui.view">
+
+        <field name="name">alliance.group.search.view</field>
+
+        <field name="model">alliance.group</field>
+
+        <field name="arch" type="xml">
+
+            <search string="Alliance Group">
+
+                <filter name="code" string="Code"
+                        context="{'group_by':'code'}"/>
+                <filter name="code" string="Code"/>
+            </search>
+
+        </field>
+
+
+    </record>
+
+    <menuitem id="alliance_group" name="Alliance Group"
+              action="alliance_group_action"
+              parent="airport_lounge.airline_details"/>
+</odoo>
+

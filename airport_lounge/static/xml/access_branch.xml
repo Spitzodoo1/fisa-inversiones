@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<template id="template" xml:space="preserve">
+    <t t-name="branch_access">
+        <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12 branch_access"
+             style="background-color: white; overflow: scroll; !important;">
+            <div class="content-header">
+                <div class="container">
+                    <div class="row mb-2">
+                        <div class="col-sm-6 d-flex flex-column justify-content-center align-items-center py-5"
+                        style="margin-top: 150px; margin-left: 250px; background:#e2cfe3;">
+
+                            <div  style="margin-top: 50px;" >
+                                <h1 class="h1">Salon.....</h1>
+                            </div>
+                            <t t-if="branches">
+                                <select name="branch_selection"
+                                        class="w-50"
+                                        id="branch_selection">
+                                    <t t-foreach="branches"
+                                       t-as="branch">
+                                        <option t-att-value="branch['id']">
+                                            <t t-esc="branch['name']"/>
+                                        </option>
+                                    </t>
+                                </select>
+                            </t>
+                            <button id="to_branch"
+                                    class="btn btn-primary btn-lg my-3">
+                                <i class="fa fa-arrow-right"/>
+                            </button>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</template>
+

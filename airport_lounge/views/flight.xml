@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="flight_details_action" model="ir.actions.act_window">
+        <field name="name">Service </field>
+        <field name="res_model">flight.details</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="flight_details_view" model="ir.ui.view">
+        <field name="name">flight.details.form</field>
+        <field name="model">flight.details</field>
+        <field name="arch" type="xml">
+            <form string="menu">
+                <sheet>
+                        <group>
+                       <field name="name"/>
+                        </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <menuitem id="flight_details" name="Flight Details" action="flight_details_action" parent="airport_lounge.airport_lounge_root" sequence="5"/>
+</odoo>
+

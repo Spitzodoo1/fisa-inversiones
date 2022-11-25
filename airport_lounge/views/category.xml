@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="category_details_action" model="ir.actions.act_window">
+        <field name="name">Category Details</field>
+        <field name="res_model">category.details</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="category_details_view" model="ir.ui.view">
+        <field name="name">category.details.form</field>
+        <field name="model">category.details</field>
+        <field name="arch" type="xml">
+            <form string="menu">
+                <sheet>
+                        <group>
+                       <field name="category"/>
+                            <field name="state"/>
+                        </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <menuitem id="category_details" name="Category Details" action="category_details_action" parent="airport_lounge.airline_details"/>
+</odoo>
+

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="airline_details_action" model="ir.actions.act_window">
+        <field name="name">Airline Details</field>
+        <field name="res_model">airline.airline</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="airline_details_view" model="ir.ui.view">
+        <field name="name">airline.airline.form</field>
+        <field name="model">airline.airline</field>
+        <field name="arch" type="xml">
+            <form string="airline">
+                <sheet>
+
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="description"/>
+                            <field name="name"/>
+<!--                            <field name="unit_prize"/>-->
+<!--                            <field name="currency_type"/>-->
+<!--                            <field name="trama"/>-->
+<!--                            <field name="billing_group"/>-->
+<!--                            <field name="logo_id"/>-->
+                        </group>
+
+<!--                        <group>-->
+<!--                            <span class="o_form_label o_td_label"-->
+<!--                                  name="address_name">-->
+<!--                                <b>Address</b>-->
+
+<!--                            </span>-->
+<!--                            <div class="o_address_format">-->
+<!--                                <field name="address" placeholder="Street..."-->
+<!--                                       class="o_address_street"/>-->
+<!--                                <field name="department"-->
+<!--                                       placeholder="Department.."-->
+<!--                                       class="o_address_street"/>-->
+<!--                                <field name="city" placeholder="City"-->
+<!--                                       class="o_address_city"/>-->
+<!--                                <field name="state_id" class="o_address_state"-->
+<!--                                       placeholder="State"/>-->
+<!--                                &lt;!&ndash;                                <field name="zip" placeholder="ZIP" class="o_address_zip"/>&ndash;&gt;-->
+<!--                                <field name="country_id" placeholder="Country"-->
+<!--                                       class="o_address_country"/>-->
+<!--                                <field name="active" invisible="1"/>-->
+<!--                            </div>-->
+<!--                            <field name="phone"/>-->
+<!--                            <field name="contact"/>-->
+<!--                            <field name="mail"/>-->
+<!--                        </group>-->
+
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+     <record id="airline_details_view_tree" model="ir.ui.view">
+        <field name="name">airline.airline.tree</field>
+        <field name="model">airline.airline</field>
+        <field name="arch" type="xml">
+            <tree string="airline">
+
+                            <field name="code"/>
+                            <field name="description"/>
+                            <field name="name"/>
+<!--                            <field name="unit_prize"/>-->
+<!--                            <field name="currency_type"/>-->
+<!--                            <field name="trama"/>-->
+            </tree>
+        </field>
+    </record>
+    <record id="airline_details_view_search_view" model="ir.ui.view">
+
+        <field name="name">airline.airline.search.view</field>
+
+        <field name="model">airline.airline</field>
+
+        <field name="arch" type="xml">
+
+            <search string="Airline">
+
+                <filter name="code" string="Code"
+                        context="{'group_by':'code'}"/>
+                <filter name="code" string="Code"/>
+                <filter name="ruc" string="Ruc"
+                        context="{'group_by':'code'}"/>
+                <filter name="name" string="name"/>
+            </search>
+
+        </field>
+
+
+    </record>
+
+<!--    <menuitem id="airline_details" name="Maintenance"-->
+<!--              parent="airport_lounge.airport_lounge_root" sequence="10"/>-->
+    <menuitem id="airline_details_menu" name="Airline Details"
+              parent="airport_lounge.airport_lounge_root"
+              action="airline_details_action"/>
+</odoo>
+

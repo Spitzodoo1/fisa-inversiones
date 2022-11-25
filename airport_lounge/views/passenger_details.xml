@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="passenger_details_action" model="ir.actions.act_window">
+        <field name="name">Passenger Details</field>
+        <field name="res_model">passenger.registration</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="passenger_details_view" model="ir.ui.view">
+        <field name="name">passenger.registration.form</field>
+        <field name="model">passenger.registration</field>
+        <field name="arch" type="xml">
+            <form string="passenger">
+                <sheet>
+                    <header>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,register"/>
+                        <field name="camera_capture"/>
+
+                    </header>
+                    <group name="Passenger">
+                        <group>
+                            <field name="airline_id"/>
+                            <field name="name"/>
+                            <field name="client_id"/>
+                            <field name="flight_number"/>
+
+                            <field name="first_name"/>
+                            <field name="cabin_class_id"/>
+                            <field name="origin"/>
+                            <field name="reservation"/>
+                            <field name="passenger"/>
+                        </group>
+                        <group name="airline" style="margin-top:70px;">
+
+
+                            <field name="last_name"/>
+
+
+                            <field name="date_passenger"/>
+
+                            <field name="date" invisible="1"/>
+
+<!--                            <field name="airline"/>-->
+
+                            <field name="destination"/>
+                            <field name="seat_number"/>
+<!--                            <field name="frequent_passenger_number"/>-->
+
+                        </group>
+                    </group>
+
+                    <footer>
+                        <group name='barcode'>
+                            <field name="passenger"/>
+
+                        </group>
+
+
+                    </footer>
+                    <notebook>
+                        <page string="Guest">
+                            <group name="Guest">
+                                <group>
+                                    <field name="no_of_guest"/>
+                                    <field name="no_of_guest_pay"/>
+                                    <field name="no_of_guest_entry"/>
+                                    <field name="bar_courtesy"/>
+                                    <button name="guest_registration"
+                                            string="Guest Registration"
+                                            class="oe_highlight"/>
+                                    <button name="shower_registration"
+                                            string="Shower Registration"
+                                            class="oe_highlight"/>
+
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Stay">
+                            <group>
+                                <field name="date_of_flight"/>
+                                <field name="entry_time_allowed"/>
+                                <field name="hour_of_exit"/>
+                                <field name="hour_entry"/>
+                            </group>
+                        </page>
+                    </notebook>
+
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="passenger_details_tree_view" model="ir.ui.view">
+        <field name="name">passenger.registration.tree</field>
+        <field name="model">passenger.registration</field>
+        <field name="arch" type="xml">
+            <tree string="passenger">
+
+                <field name="date_attention"/>
+                <field name="client_id"/>
+                <field name="airline_id"/>
+                <field name="time_alert"/>
+                <field name="category_id"/>
+                <field name="no_of_people"/>
+                <field name="flight_number"/>
+                <field name="seat_number"/>
+                <field name="cabin_class_id"/>
+                <field name="voucher_id"/>
+                <field name="voucher_qty"/>
+                <field name="account_number"/>
+                <field name="reservation"/>
+                <field name="invoiced_group"/>
+                <field name="invitation"/>
+
+            </tree>
+        </field>
+    </record>
+    <record id="passenger_search_view" model="ir.ui.view">
+        <field name="name">passenger.registration.view.search</field>
+        <field name="model">passenger.registration</field>
+        <field name="arch" type="xml">
+            <search string="passenger">
+
+                <filter name="client_id" string="Client"
+                        context="{'group_by':'client_id'}"/>
+                <filter name="filter_client_id" string="Client"/>
+                <filter name="airline_id" string="Airline"
+                        context="{'group_by':'airline_id'}"/>
+                <filter name="airline_id" string="Airline"/>
+            </search>
+        </field>
+    </record>
+
+    <!--    <menuitem id="user_registration" action="user_registration_action"-->
+    <!--              name="User Registration"-->
+    <!--              parent="airport_lounge.airport_lounge_root" sequence="1"/>-->
+
+    <menuitem id="passenger_details" name="Passenger Details"
+              action="passenger_details_action" sequence="1"
+              parent="airport_lounge.airport_lounge_root"/>
+    <menuitem id="passenger_services" name="Services"
+              action="passenger_details_action" sequence="3"
+              parent="airport_lounge.airport_lounge_root"/>
+
+
+</odoo>
+

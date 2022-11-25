@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="type_client_action" model="ir.actions.act_window">
+        <field name="name">Client Details</field>
+        <field name="res_model">type.client</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="client_details_view" model="ir.ui.view">
+        <field name="name">type.client.form</field>
+        <field name="model">type.client</field>
+        <field name="arch" type="xml">
+            <form string="menu">
+                <sheet>
+                    <group>
+                        <group>
+                       <field name="name"/>
+                            <field name="branch_id"/>
+                            <field name="tariff"/>
+                            <field name="extra_time"/>
+                            <field name="tolerance_in_min"/>
+                            <field name="hours_allowed_in"/>
+
+                        </group>
+                    <group>
+                         <field name="num_of_new_entrance"/>
+                            <field name="drinks_number"/>
+
+                            <field name="access"/>
+                    </group>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+        <record id="client_details_tree" model="ir.ui.view">
+        <field name="name">type.client.tree</field>
+        <field name="model">type.client</field>
+        <field name="arch" type="xml">
+            <tree string="menu">
+
+                       <field name="name"/>
+                            <field name="branch_id"/>
+                            <field name="tariff"/>
+                            <field name="extra_time"/>
+                            <field name="tolerance_in_min"/>
+                            <field name="hours_allowed_in"/>
+
+
+
+                         <field name="num_of_new_entrance"/>
+                            <field name="drinks_number"/>
+
+                            <field name="access"/>
+
+            </tree>
+        </field>
+    </record>
+      <menuitem id="passenger_configuration" name="Configuration"
+              action="passenger_details_action" sequence="10"
+              parent="airport_lounge.airport_lounge_root"/>
+    <menuitem id="type_client" name="Client" action="type_client_action"  parent="airport_lounge.passenger_configuration"/>
+
+</odoo>
+

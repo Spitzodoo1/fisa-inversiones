@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="card_details_action" model="ir.actions.act_window">
+        <field name="name">Card Details</field>
+        <field name="res_model">card.details</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="card_details_view" model="ir.ui.view">
+        <field name="name">card.details.form</field>
+        <field name="model">card.details</field>
+        <field name="arch" type="xml">
+            <form string="menu">
+                <sheet>
+                        <group>
+                       <field name="code"/>
+                            <field name="description"/>
+                            <field name="currency_id"/>
+                            <field name="unit_prize"/>
+                            <field name="agreement_status"/>
+                            <field name="status"/>
+                        </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <menuitem id="card_details" name="Card Details" action="card_details_action" parent="airport_lounge.airline_details"/>
+</odoo>
+

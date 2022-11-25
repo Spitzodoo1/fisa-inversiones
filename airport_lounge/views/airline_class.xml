@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="airline_class_action" model="ir.actions.act_window">
+        <field name="name">Airline Class</field>
+        <field name="res_model">airline.class</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="airline_class_view" model="ir.ui.view">
+        <field name="name">airline.class.form</field>
+        <field name="model">airline.class</field>
+        <field name="arch" type="xml">
+            <form string="menu">
+                <sheet>
+                    <header>
+                          <field name="state" widget="statusbar"
+                               statusbar_visible="draft,active,deactive"/>
+                         <button name="activate_airline" string="Activate"
+                                type="object" class="oe_highlight"/>
+                        <button name="deactivate_airline" string="Deactivate"
+                                type="object" class="oe_highlight"/>
+                    </header>
+                        <group>
+                            <field name="code"/>
+                       <field name="airline_id"/>
+                            <field name="airline_class"/>
+                            <field name="parameter"/>
+                        </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <menuitem id="airline_class" name="Airline Class" action="airline_class_action" parent="airport_lounge.airline_details" />
+</odoo>
+
