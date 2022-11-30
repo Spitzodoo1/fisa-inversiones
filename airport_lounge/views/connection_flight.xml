@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+  <record id="view_connection_flight" model="ir.ui.view">
+        <field name="name">connection.flight.inherit.view</field>
+        <field name="model">passenger.registration</field>
+        <field name="inherit_id" ref="airport_lounge.passenger_details_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='guest']" position="after">
+                <page name="connection_flight" string="Connection Flight">
+                    <field name="child_ids" mode="kanban">
+
+
+                    <kanban string="Connection Flight">
+                    <field name="flight_number"/>
+                    <field name="cabin_class_id"/>
+                    <field name="seat_number"/>
+                    <field name="origin"/>
+                    <field name="destination"/>
+
+
+                    </kanban>
+                    </field>
+                </page>
+            </xpath>
+
+
+        </field>
+  </record>
+</odoo>
+

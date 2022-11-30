@@ -8,26 +8,22 @@ class PassengerRegistration(models.Model):
     _name = 'passenger.registration'
     _description = 'Passenger Registration Details'
     _rec_name = 'name'
-    passenger_data_by = fields.Selection(
-        [('agreement cards', 'Agreement cards'),
-         ('airlines', 'Airlines'),
-         ('sales', 'Sales'),
-         ('agencies', 'Agencies')],
-        string='Passenger Data By'
-        , help="able to visualize and enter"
-               " passenger data by")
     passenger = fields.Char(string="Passenger")
     first_name = fields.Char(string="First Name")
     last_name = fields.Char(string="Last Name")
-    date_passenger = fields.Date(string="Date")
-    name = fields.Char(string='code')
+    date_passenger = fields.Date(string="Date", )
+    name = fields.Char(string='code', default="New", readonly=True)
+    registration_id = fields.Many2one('passenger.registration')
+    child_ids = fields.One2many('passenger.registration', 'registration_id',
+                                'connection_flight')
     state = fields.Selection(
         [('draft', 'draft '),
+         ('validate', 'validated'),
+         ('reject', 'rejected'),
          ('register', 'registerd'),
          ], required=True, default='draft')
 
-    date_attention = fields.Datetime(string="Date Attention")
-    client_id = fields.Many2one('type.client', string="Client")
+    client_id = fields.Many2one('type.client', string="Member Ship Card")
     airline_id = fields.Many2one('airline.airline', string="Airline")
     date = fields.Datetime(string="Date", default=datetime.today())
     time_alert = fields.Float()
@@ -56,10 +52,11 @@ class PassengerRegistration(models.Model):
     reservation = fields.Char(string="Reservation Code")
     frequent_passenger_number = fields.Char(
         string="Frequent Passenger Number")
+    frequent_flair_class_id = fields.Many2one('frequent.fire.class')
     authorised_by = fields.Char(string="Authorised By")
     invoiced_group = fields.Char(string="Invoice Group")
-    invitation = fields.Binary(string="Attach Invitation",
-                               )
+    invitation = fields.Boolean(string=" Invitation",
+                                )
     observation = fields.Char(string="Observation")
 
     identification = fields.Char(string="Identification Number",
@@ -80,12 +77,7 @@ class PassengerRegistration(models.Model):
     commercial_name = fields.Char(string="Commercial Name")
     legal_name = fields.Char(string='Legal Name')
     vat_number = fields.Integer(string="VAT Number")
-    # ticket_class = fields.Selection([('economy', 'Economy'),
-    #                                  ('premium_economy', 'Premium Economy'),
-    #                                  ('business', 'Business'),
-    #                                  ('first_class', 'First Class')],
-    #                                 string='Class'
-    #                                 , help="Select the ticket class")
+    connection_flight = fields.Boolean(string="Connection Flight")
     date_entrance = fields.Datetime(string="Date Of Entrance")
     date_of_exit = fields.Datetime(string="Date of exit")
 
@@ -113,11 +105,11 @@ class PassengerRegistration(models.Model):
         print("result", result)
         return result
 
-    def passenger_alert(self):
-        pass
+    def validate_card(self):
+        self.write({'state': 'validate'})
 
-    def action_invitation(self):
-        pass
+    def reject_card(self):
+        self.write({'state': 'reject'})
 
     def guest_registration(self):
         pass
@@ -139,7 +131,12 @@ class PassengerRegistration(models.Model):
 
         '''for removing space'''
         for i in range(len(first_name)):
-            print(first_name[i])
+            print("1...........",first_name[i])
+            airlinename = self.env['airline.airline'].search(
+                [('code', 'like', first_name[i])],limit=1)
+            print("chandamama", airlinename)
+            if airlinename.code:
+                self.write({'frequent_passenger_number':first_name[i-1]})
 
             length = len(list(first_name[i]))
             reservation = []
@@ -425,10 +422,7 @@ class PassengerRegistration(models.Model):
 
             for d in range(len(first_name)):
                 """flight number"""
-                if not self.flight_number:
-                    if len(list(first_name[d])) == 4:
-                        if (first_name[d].isdigit()):
-                            self.write({'flight_number': first_name[d]})
+
                 des = list(first_name[d])
 
                 print("listofreservation", first_name)
@@ -446,18 +440,25 @@ class PassengerRegistration(models.Model):
                                         list_dest.append(i)
                                         print("lisstdest", list_dest)
                                         x = "".join([str(i) for i in list_dest])
+                                        desti = self.env['travel.place'].search(
+                                            [('code', '=', x)])
+
                                         print(x, "destina")
                                         self.write({
-                                            'origin': x})
+                                            'origin': desti.name})
                                     elif len(list_dest) < 5:
                                         if len(list_origin) < 3:
                                             list_origin.append(i)
                                         y = "".join(
                                             [str(i) for i in list_origin])
                                         print(y, "orgin")
+                                        destinat = self.env[
+                                            'travel.place'].search(
+                                            [('code', '=', y)])
+
                                         self.write({
                                             # 'origin': x,
-                                            'destination': y
+                                            'destination': destinat.name
                                         })
 
                                     air_code = list(first_name[d])
@@ -470,7 +471,7 @@ class PassengerRegistration(models.Model):
                                         airline_nmae = self.env[
                                             'airline.airline'].search(
                                             [('code', 'like', air)])
-                                        print("moon,airline_nmae", air)
+                                        print("moonioo,airline_nmae", air)
                                         self.write(
                                             {'airline_id': airline_nmae.id})
                                         print("moon,airline_nmae", airline_nmae)
@@ -494,21 +495,27 @@ class PassengerRegistration(models.Model):
                                         list_dest.append(i)
                                         x = "".join([str(i) for i in list_dest])
                                         print(x, "xxxxxxxxxxxxxx")
+                                        orig = self.env['travel.place'].search(
+                                            [('code', '=', x)])
                                     if not self.origin:
                                         if len(list_dest) == 3:
                                             self.write({
-                                                'origin': x})
+                                                'origin': orig.name})
                                     elif len(list_dest) < 5:
                                         if len(list_origin) < 3:
                                             list_origin.append(i)
                                         y = "".join(
                                             [str(i) for i in list_origin])
+                                        desti = self.env['travel.place'].search(
+                                            [('code', '=', y)])
+                                        print(desti, "destiniinini")
+
                                         print(y, "orgin")
                                         if not self.destination:
                                             if len(list_origin) == 3:
                                                 self.write({
                                                     # 'origin': x,
-                                                    'destination': y
+                                                    'destination': desti.name
                                                 })
                                     air_code = list(for_origin[-1])
                                     print(air_code, "kasav")
@@ -522,6 +529,10 @@ class PassengerRegistration(models.Model):
                                             [('code', '=', air)])
                                         self.write(
                                             {'airline_id': airline_nmae.id})
+                if not self.flight_number:
+                    if len(list(first_name[d])) == 4:
+                        if (first_name[d].isdigit()):
+                            self.write({'flight_number': first_name[d]})
 
                 """seat number"""
                 list_seat = []
@@ -546,8 +557,10 @@ class PassengerRegistration(models.Model):
 
                                             print("resultres", detail[i])
 
-                                            cabin=self.env['cabin.class'].search(
-                                                [('code', 'like', detail[i])],limit=1)
+                                            cabin = self.env[
+                                                'cabin.class'].search(
+                                                [('code', 'like', detail[i])],
+                                                limit=1)
                                             self.write(
                                                 {'cabin_class_id': cabin.id})
                                             print("143", ticket[t])
@@ -557,8 +570,9 @@ class PassengerRegistration(models.Model):
                             # print("date",date)
                             # self.write({'date_passenger':date})
 
-                            if not self.seat_number:
+                            if not self.seat_number and self.airline_id.code:
                                 sp = self.cabin_class_id.code
+                                print(sp, "sp")
                                 seat = ticket.split(sp)
                                 print("part1", seat)
                                 seat1 = list(seat[1])
@@ -718,4 +732,16 @@ class PassengerRegistration(models.Model):
                         str(i) for i in dest_list)
                     print(origin_list)
                     print(dst)
-                    self.write({'destination': dst})
+                    self.write({'destination': dst,
+
+                                })
+
+            # if first_name[i] in self.airline_id.code:
+            #     print("frequentnumber", first_name[i])
+        flight = self.flight_number
+        if self.airline_id and self.airline_id.code:
+            flight = self.airline_id.code + " " + self.flight_number
+        print("last", flight)
+        print(type(flight
+                   ))
+        self.write({'flight_number': flight})

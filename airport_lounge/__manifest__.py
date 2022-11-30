@@ -6,7 +6,6 @@
         'views/sequence.xml',
         'views/branch_access.xml',
         # 'views/flight.xml',
-        'views/type_client.xml',
         'views/airline.xml',
         # 'views/category.xml',
         # 'views/alliance_group.xml',
@@ -14,8 +13,11 @@
         # 'views/employee_shift.xml',
         # 'views/agencies.xml',
         'views/passenger_details.xml',
-        'views/cabin_class.xml'
-        # 'views/airline_class.xml'
+        'views/type_client.xml',
+        'views/cabin_class.xml',
+
+        'views/travel_place.xml',
+
 
 
 

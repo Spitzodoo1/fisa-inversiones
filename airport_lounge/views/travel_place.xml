@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="travel_client_action" model="ir.actions.act_window">
+        <field name="name">Travel Details</field>
+        <field name="res_model">travel.place</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="travel_details_view" model="ir.ui.view">
+        <field name="name">travel.place.form</field>
+        <field name="model">travel.place</field>
+        <field name="arch" type="xml">
+            <form string="menu">
+                <sheet>
+                    <group>
+                        <group>
+                       <field name="name"/>
+                            <field name="code"/>
+
+
+                        </group>
+
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+        <record id="travel_details_tree" model="ir.ui.view">
+        <field name="name">travel.place.tree</field>
+        <field name="model">travel.place</field>
+        <field name="arch" type="xml">
+            <tree string="menu">
+
+                       <field name="name"/>
+                            <field name="code"/>
+
+
+            </tree>
+        </field>
+    </record>
+
+    <menuitem id="travel_client" name="Travel" action="travel_client_action"  parent="airport_lounge.passenger_configuration"/>
+
+</odoo>
+

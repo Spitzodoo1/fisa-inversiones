@@ -13,3 +13,5 @@ from . import airline_class
 from .import branch_access
 from .import cabin_class
 from .import frequent_fire_class
+from .import travel_place
+from .import connection_flight
