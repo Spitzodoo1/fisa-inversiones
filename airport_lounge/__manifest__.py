@@ -13,6 +13,7 @@
         # 'views/employee_shift.xml',
         # 'views/agencies.xml',
         'views/passenger_details.xml',
+        'views/guest_view.xml',
         'views/type_client.xml',
         'views/cabin_class.xml',
 

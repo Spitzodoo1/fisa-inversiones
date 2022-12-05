@@ -8,84 +8,60 @@ class PassengerRegistration(models.Model):
     _name = 'passenger.registration'
     _description = 'Passenger Registration Details'
     _rec_name = 'name'
-    passenger = fields.Char(string="Passenger")
+    passenger = fields.Char(string="Boarding Pass Code")
     first_name = fields.Char(string="First Name")
     last_name = fields.Char(string="Last Name")
     date_passenger = fields.Date(string="Date", )
-    name = fields.Char(string='code', default="New", readonly=True)
+    name = fields.Char(string='Internal Pax Code', default="New", readonly=True)
     registration_id = fields.Many2one('passenger.registration')
+    guest_id = fields.Many2one('passenger.registration')
     child_ids = fields.One2many('passenger.registration', 'registration_id',
-                                'connection_flight')
+                                string="Registration")
+    guest_ids = fields.One2many('passenger.registration', 'guest_id')
     state = fields.Selection(
         [('draft', 'draft '),
          ('validate', 'validated'),
          ('reject', 'rejected'),
          ('register', 'registerd'),
          ], required=True, default='draft')
+    child = fields.Boolean(string="Child")
+    email = fields.Boolean(string="Email")
+    email_upload = fields.Binary()
+    invitation_upload = fields.Binary()
+    invitation = fields.Boolean(string="invitation")
+    allowed_extra_time = fields.Float(string="Allowed Extra Time")
+    allowed_drink = fields.Integer(string="Allowed Drinks")
 
     client_id = fields.Many2one('type.client', string="Member Ship Card")
     airline_id = fields.Many2one('airline.airline', string="Airline")
-    date = fields.Datetime(string="Date", default=datetime.today())
-    time_alert = fields.Float()
+    date = fields.Datetime(string="Registration Time", default=datetime.today())
     origin = fields.Char(string="Origin",
                          help="he place from which the passenger is departing "
                               "is indicated")
     destination = fields.Char(string="Destination",
                               help="where the passenger is going.")
-    category_id = fields.Many2one('category.details', string="Category")
-    no_of_people = fields.Integer(string="Number Of People",
-                                  help="is represented by the number"
-                                       " 1 but if it is a guest,"
-                                       " it is represented by 0")
+
     flight_number = fields.Char(string="Flight Number"
                                 , help="type the first two digits of "
                                        "the airline and the flight number")
     seat_number = fields.Char(string="Seat Number")
 
     cabin_class_id = fields.Many2one('cabin.class', string="Cabin class")
-    voucher_id = fields.Many2one('voucher.details', string="Voucher",
-                                 help="represents and indicates the guest to "
-                                      "the airline, agency, cards among "
-                                      "others")
-    voucher_qty = fields.Integer(dstring="Voucher Quantity")
     account_number = fields.Integer(string="Account Number")
     reservation = fields.Char(string="Reservation Code")
     frequent_passenger_number = fields.Char(
-        string="Frequent Passenger Number")
-    frequent_flair_class_id = fields.Many2one('frequent.fire.class')
-    authorised_by = fields.Char(string="Authorised By")
-    invoiced_group = fields.Char(string="Invoice Group")
+        string="Frequent Pax Nr")
+    frequent_flair_class_id = fields.Many2one('frequent.fire.class',
+                                              string="Frequent Flyer class")
     invitation = fields.Boolean(string=" Invitation",
                                 )
-    observation = fields.Char(string="Observation")
-
-    identification = fields.Char(string="Identification Number",
-                                 readonly=True)
-    _sql_constraints = [('identification',
-                         'unique(identification)',
-                         'identification'
-                         ' must be unique!')]
-
     type_of_client_id = fields.Many2one('type.client', string="Type of client",
                                         help="Type of client")
-    phone = fields.Integer(string="Phone")
-    email = fields.Char(string="Email")
-    age = fields.Integer(string="Age")
     country_of_destiny_id = fields.Many2one('res.country',
                                             string='Country of Destiny')
-    city_of_destiny = fields.Char(string='City of Destiny')
-    commercial_name = fields.Char(string="Commercial Name")
-    legal_name = fields.Char(string='Legal Name')
-    vat_number = fields.Integer(string="VAT Number")
     connection_flight = fields.Boolean(string="Connection Flight")
-    date_entrance = fields.Datetime(string="Date Of Entrance")
-    date_of_exit = fields.Datetime(string="Date of exit")
-
     tariff = fields.Float(string="Tariff")
-    ticket_number = fields.Char(string="Ticket Number")
     date_of_flight = fields.Datetime(string="Date of Flight Departurel")
-    hour_of_flight = fields.Float(string="Hour of flight")
-    pass_port_no = fields.Char(string="Passport Number")
     no_of_guest = fields.Integer(string="No.Of.Guest", default=5)
     no_of_guest_pay = fields.Integer("No.Of.Guest To Pay", defualt=5)
     no_of_guest_entry = fields.Integer("No.Of.Entry Guest")
@@ -94,16 +70,24 @@ class PassengerRegistration(models.Model):
     hour_of_exit = fields.Float(string=" Exit time")
     hour_entry = fields.Float(string="Exact Entry Time")
     camera_capture = fields.Binary()
+    allowed_entry_time = fields.Datetime(string="Allowed Entry Time")
+    guests = fields.Boolean(string="Guest")
+    guest_code = fields.Char(string="Guest Code")
+    next_guest_code = fields.Integer(string='hhh')
 
     @api.model
     def create(self, vals):
+        print(vals, "nnn")
         self.state = 'draft'
         if vals.get('name', 'New') == 'New':
             vals['name'] = self.env['ir.sequence'].next_by_code(
                 'passenger.registration') or 'New'
+
         result = super(PassengerRegistration, self).create(vals)
-        print("result", result)
+
         return result
+
+    # def write(self, vals):
 
     def validate_card(self):
         self.write({'state': 'validate'})
@@ -131,12 +115,12 @@ class PassengerRegistration(models.Model):
 
         '''for removing space'''
         for i in range(len(first_name)):
-            print("1...........",first_name[i])
+            print("1...........", first_name[i])
             airlinename = self.env['airline.airline'].search(
-                [('code', 'like', first_name[i])],limit=1)
+                [('code', 'like', 'LA')], limit=1)
             print("chandamama", airlinename)
             if airlinename.code:
-                self.write({'frequent_passenger_number':first_name[i-1]})
+                self.write({'frequent_passenger_number': first_name[i - 1]})
 
             length = len(list(first_name[i]))
             reservation = []
@@ -709,6 +693,7 @@ class PassengerRegistration(models.Model):
                 new.append(first_name[d] if word in first_name[d] else "")
                 print("fbjshfiehjlkfs", new)
                 place = list(filter(None, new))
+
             print(place)
             if len(place) == 2:
                 print(place[0])
@@ -741,7 +726,29 @@ class PassengerRegistration(models.Model):
         flight = self.flight_number
         if self.airline_id and self.airline_id.code:
             flight = self.airline_id.code + " " + self.flight_number
+            print("nokokokoo", self.airline_id.code)
+            code_airline=self.airline_id.code
+            if self.airline_id.code == code_airline:
+                print("pokkioo",first_name[-1])
+                fireclass = self.env['frequent.fire.class'].search(
+                    [('code', '=', first_name[-1])])
+                print(fireclass,"gggfireeee")
+                self.write({'frequent_flair_class_id': fireclass.id})
         print("last", flight)
         print(type(flight
                    ))
         self.write({'flight_number': flight})
+        #
+        if not self.guest_code:
+            print("kok", self.id)
+            p = self.env['passenger.registration'].search(
+                [('name', '=', self.name)])
+            for rec in p:
+                self.write({'guest_id': rec.id})
+
+                rec.next_guest_code += 1
+                sub_seq = "\G" + str(rec.next_guest_code)
+                print(sub_seq, "koilooi")
+                self.write({'next_guest_code': rec.next_guest_code,
+                            'guest_code': rec.name + sub_seq
+                            })

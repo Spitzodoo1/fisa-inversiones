@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+<!--    <record id="guest_details_view" model="ir.ui.view">-->
+<!--        <field name="name">passenger.registration.guest.form</field>-->
+<!--        <field name="model">passenger.registration</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <form string="guest">-->
+<!--                <sheet>-->
+
+<!--                    <group name="guest" style="margin-top:10px;">-->
+<!--                        <group>-->
+<!--&lt;!&ndash;                            <field name="airline_id"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <field name="client_id"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <field name="flight_number"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <field name="first_name"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <field name="last_name"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <field name="origin"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <field name="destination"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <field name="passenger"/>&ndash;&gt;-->
+<!--                            <field name="guest"/>-->
+<!--                        </group>-->
+
+<!--                        <group name="guest_airline" style="margin-top:10px;">-->
+<!--                            <field name="allowed_entry_time"/>-->
+<!--                            <field name="cabin_class_id"/>-->
+<!--                            <field name="frequent_flair_class_id"/>-->
+<!--                            <field name="frequent_passenger_number"/>-->
+<!--                            <field name="seat_number"/>-->
+<!--                            <field name="reservation"/>-->
+<!--                            <field name="date"/>-->
+<!--                            <field name="connection_flight"/>-->
+<!--                            <field name="invitation"/>-->
+<!--                            <field name="guest_code"/>-->
+
+<!--                        </group>-->
+<!--                        <group name="code" style="margin-left:645px;">-->
+
+<!--                            <field name="name"/>-->
+<!--                        </group>-->
+
+
+<!--                    </group>-->
+
+<!--                </sheet>-->
+<!--            </form>-->
+<!--        </field>-->
+<!--    </record>-->
+
+</odoo>
+

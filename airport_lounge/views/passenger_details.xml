@@ -5,6 +5,8 @@
         <field name="res_model">passenger.registration</field>
         <field name="view_mode">tree,form</field>
     </record>
+
+
     <record id="passenger_details_view" model="ir.ui.view">
         <field name="name">passenger.registration.form</field>
         <field name="model">passenger.registration</field>
@@ -21,38 +23,38 @@
                                 type="object" class="oe_highlight"/>
 
                     </header>
-                    <group name="Passenger">
+                    <group name="Passenger" style="margin-top:10px;">
                         <group>
                             <field name="airline_id"/>
+
+
                             <field name="client_id"/>
+                            <field name="guest_id" invisible="1"/>
+
                             <field name="flight_number"/>
                             <field name="first_name"/>
                             <field name="last_name"/>
                             <field name="origin"/>
                             <field name="destination"/>
                             <field name="passenger"/>
+                            <field name="guests"/>
                         </group>
 
-                        <group name="airline" style="margin-top:80px;">
-                               <field name="cabin_class_id"/>
+                        <group name="airline" style="margin-top:10px;">
+                            <field name="allowed_entry_time"/>
+                            <field name="cabin_class_id"/>
                             <field name="frequent_flair_class_id"/>
-                            <field  name="frequent_passenger_number" />
+                            <field name="frequent_passenger_number"/>
                             <field name="seat_number"/>
                             <field name="reservation"/>
-                            <field name="date" />
-
-                            <!--                            <field name="airline"/>-->
-
-                            <!--                            <field name="frequent_passenger_number"/>-->
+                            <field name="date"/>
                             <field name="connection_flight"/>
                             <field name="invitation"/>
 
                         </group>
                         <group name="code" style="margin-left:645px;">
-<!--                             <div class="oe_button_box" style="margin-left:380px;">-->
-<!--                                <label for="name"/>-->
-                                <field name="name"/>
-<!--                        </div>-->
+
+                            <field name="name"/>
                         </group>
 
 
@@ -60,32 +62,97 @@
 
 
                     <notebook>
-                        <page string="Guest" name="guest">
-                            <group name="guest">
-                                <group>
-                                    <field name="no_of_guest"/>
-                                    <field name="no_of_guest_pay"/>
-                                    <field name="no_of_guest_entry"/>
-                                    <field name="bar_courtesy"/>
-                                    <button name="guest_registration"
-                                            string="Guest Registration"
-                                            class="oe_highlight"/>
-                                    <button name="shower_registration"
-                                            string="Shower Registration"
-                                            class="oe_highlight"/>
+                        <page string="Guest" name="guest" attrs="{'invisible': [('guests','!=',True)]}">
+                            <field name="guest_ids" mode="kanban"
+                                   context="{'default_connection_flight': True,'guests':True,'default_name':name,'default_guest_id':id }">
+                                <kanban string="Guest">
+                                    <field name="flight_number"/>
+                                    <field name="cabin_class_id"/>
+                                    <field name="seat_number"/>
+                                    <field name="origin"/>
+                                    <field name="destination"/>
+                                    <field name="guests"/>
+                                    <field name="guest_code"/>
+                                    <field name="guest_id"/>
 
-                                </group>
+
+
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <div>
+                                                <div t-attf-class="oe_kanban_global_click">
+
+                                                <div class="oe_kanban_details">
+                                                    <field name="guest_id"/>
+
+                                                    <field name="guest_code"/>
+
+
+                                                    <div>
+                                                        <field name="last_name"/>
+                                                        <field name="seat_number"/>
+                                                    </div>
+                                                    <field name="origin"/>
+                                                </div>
+
+                                                </div>
+
+                                            </div>
+                                        </t>
+                                    </templates>
+
+
+                                </kanban>
+                                <form string="Guest">
+                                    <group name="connection_form">
+                                        <group>
+                                            <field name="airline_id"/>
+                                            <field name="flight_number"/>
+                                            <field name="first_name"/>
+                                            <field name="last_name"/>
+                                            <field name="origin"/>
+                                            <field name="destination"/>
+                                            <field name="passenger"/>
+
+                                        </group>
+                                        <group>
+                                                                                <field name="guest_id"/>
+
+                                            <field name="guest_code"/>
+
+                                            <field name="guests"/>
+                                            <field name="child"/>
+                                            <field name="allowed_extra_time"/>
+                                            <field name="allowed_drink"
+                                                   attrs="{'invisible': [('child','!=',False)]}"/>
+                                            <field name="cabin_class_id"/>
+                                            <field name="reservation"/>
+                                            <field name="date"/>
+                                            <field name="next_guest_code" invisible="1"/>
+                                        </group>
+
+                                    </group>
+
+                                </form>
+                            </field>
+
+                        </page>
+                        <page string="Invitation">
+                            <group name="invitation">
+                                <field name="email"/>
+                                <field name="invitation"/>
+                            </group>
+                            <group name="Upload">
+                                <field name="email_upload"
+                                       attrs="{'invisible': [('email','!=',True)]}"/>
+                                <field name="invitation_upload"
+                                       attrs="{'invisible': [('invitation','!=',True)]}"/>
+
                             </group>
                         </page>
-                        <page string="Stay">
-                            <group>
-                                <field name="date_of_flight"/>
-                                <field name="entry_time_allowed"/>
-                                <field name="hour_of_exit"/>
-                                <field name="hour_entry"/>
-                            </group>
-                        </page>
-                        <page name="connection_flight" string="Connection Flight" attrs="{'invisible': [('connection_flight','!=',True)]}" >
+                        <page name="connection_flight"
+                              string="Connection Flight"
+                              attrs="{'invisible': [('connection_flight','!=',True)]}">
                             <field name="child_ids" mode="kanban"
                                    context="{'default_connection_flight': True,'default_name':name}">
 
@@ -98,20 +165,26 @@
                                     <field name="destination"/>
                                     <templates>
                                         <t t-name="kanban-box">
-                                            <div>
-
-                                                <div class="oe_kanban_details">
-                                                    <field name="flight_number"/>
-
-                                                    <div>
-                                                        <field name="cabin_class_id"/>
-                                                        <field name="seat_number"/>
-                                                    </div>
-                                                    <field name="origin"/>
+                                            <!--                                             <t t-set="color" t-value="kanban_color(record.color.raw_value)"/>-->
+                                            <div t-attf-class="oe_kanban_global_click">
+                                                <div class="o_kanban_image">
+                                                    <img alt="Contact image"
+                                                         t-att-src="kanban_image('passenger.registration', 'avatar_128', record.id.raw_value)"/>
                                                 </div>
-                                                <!--                                                    <div t-if="record.phone.raw_value">Phone: <t t-esc="record.phone.value"/></div>-->
-                                                <!--                                                    <div t-if="record.mobile.raw_value">Mobile: <t t-esc="record.mobile.value"/></div>-->
+                                                <div>
 
+                                                    <div class="oe_kanban_details">
+                                                        <field name="flight_number"/>
+
+                                                        <div>
+                                                            <field name="cabin_class_id"/>
+                                                            <field name="seat_number"/>
+                                                        </div>
+                                                        <field name="origin"/>
+                                                    </div>
+
+
+                                                </div>
                                             </div>
                                         </t>
                                     </templates>
@@ -119,23 +192,24 @@
 
                                 </kanban>
                                 <form>
-                                    <group name="Passenger Form">
+                                    <group name="connection_flight">
                                         <group>
                                             <field name="airline_id"/>
                                             <field name="flight_number"/>
+                                            <field name="first_name"/>
+                                            <field name="last_name"/>
                                             <field name="origin"/>
                                             <field name="destination"/>
                                             <field name="passenger"/>
 
                                         </group>
                                         <group>
+                                            <!--                                            <field name="guest_code"  invisible="context.get('connection_flight')"/>-->
+
+                                            <!--                                            <field name="guest"/>-->
                                             <field name="cabin_class_id"/>
-                                            <field name="frequent_flair_class_id"/>
-                                            <field  name="frequent_passenger_number" />
-                                            <field name="seat_number"/>
                                             <field name="reservation"/>
-                                            <field name="date" />
-                                            <field name="name"/>
+                                            <field name="date"/>
                                         </group>
 
                                     </group>
@@ -160,18 +234,10 @@
 
                 <field name="client_id"/>
                 <field name="airline_id"/>
-                <field name="time_alert"/>
-                <field name="category_id"/>
-                <field name="no_of_people"/>
                 <field name="flight_number"/>
                 <field name="seat_number"/>
                 <field name="cabin_class_id"/>
-                <field name="voucher_id"/>
-                <field name="voucher_qty"/>
-                <field name="account_number"/>
                 <field name="reservation"/>
-                <field name="invoiced_group"/>
-                <field name="invitation"/>
 
             </tree>
         </field>
