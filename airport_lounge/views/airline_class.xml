@@ -30,6 +30,31 @@
             </form>
         </field>
     </record>
+    <record id="cabin_class_details_view_search_view" model="ir.ui.view">
+
+        <field name="name">cabin.class.search.view</field>
+
+        <field name="model">cabin.class</field>
+
+        <field name="arch" type="xml">
+
+            <search string="Airline">
+
+                <field name="code"/>
+
+                <filter name="code" string="Code"
+                        context="{'group_by':'code'}"/>
+
+<!--                <filter name="code" string="Code"/>-->
+<!--                <filter name="ruc" string="Ruc"-->
+<!--                        context="{'group_by':'code'}"/>-->
+<!--                <filter name="name" string="name"/>-->
+            </search>
+
+        </field>
+
+
+    </record>
     <menuitem id="airline_class" name="Airline Class" action="airline_class_action" parent="airport_lounge.airline_details" />
 </odoo>
 

@@ -15,3 +15,5 @@ from .import cabin_class
 from .import frequent_fire_class
 from .import travel_place
 from .import connection_flight
+from .import shower_creation
+from . import shower_service

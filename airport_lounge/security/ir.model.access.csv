@@ -14,7 +14,8 @@ access_access_branch,access_access_branch,model_branch_access,base.group_user,1,
 access_cabin_class,access_cabin_class,model_cabin_class,base.group_user,1,1,1,1
 access_frequent_fire_class,access_frequent_fire_class,model_frequent_fire_class,base.group_user,1,1,1,1
 access_travel_place,access_travel_place,model_travel_place,base.group_user,1,1,1,1
-
+access_shower_creation,access_shower_creation,model_shower_creation,base.group_user,1,1,1,1
+access_shower_service,access_shower_service,model_shower_service,base.group_user,1,1,1,1
 
 
 

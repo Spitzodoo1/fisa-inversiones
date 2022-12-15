@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="passenger_details_action" model="ir.actions.act_window">
-        <field name="name">Passenger Details</field>
+        <field name="name">Passenger Registration</field>
         <field name="res_model">passenger.registration</field>
         <field name="view_mode">tree,form</field>
     </record>
@@ -12,17 +12,18 @@
         <field name="model">passenger.registration</field>
         <field name="arch" type="xml">
             <form string="passenger">
-                <sheet>
-                    <header>
-                        <field name="state" widget="statusbar"
-                               statusbar_visible="draft,register,validate,reject"/>
-                        <field name="camera_capture"/>
-                        <button name="validate_card" string="Validate Card"
-                                type="object" class="oe_highlight"/>
-                        <button name="reject_card" string="Reject Card"
-                                type="object" class="oe_highlight"/>
+                <header>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,register,validate,reject"/>
+                    <field name="camera_capture"/>
+                    <button name="validate_card" string="Validate Card"
+                            type="object" class="oe_highlight"/>
+                    <button name="reject_card" string="Reject Card"
+                            type="object" class="oe_highlight"/>
 
-                    </header>
+                </header>
+                <sheet>
+
                     <group name="Passenger" style="margin-top:10px;">
                         <group>
                             <field name="airline_id"/>
@@ -34,8 +35,8 @@
                             <field name="flight_number"/>
                             <field name="first_name"/>
                             <field name="last_name"/>
-                            <field name="origin"/>
-                            <field name="destination"/>
+                            <field name="origin_id"/>
+                            <field name="destination_id"/>
                             <field name="passenger"/>
                             <field name="guests"/>
                         </group>
@@ -62,19 +63,19 @@
 
 
                     <notebook>
-                        <page string="Guest" name="guest" attrs="{'invisible': [('guests','!=',True)]}">
+                        <page string="Guest" name="guest"
+                              attrs="{'invisible': [('guests','!=',True)]}">
                             <field name="guest_ids" mode="kanban"
                                    context="{'default_connection_flight': True,'guests':True,'default_name':name,'default_guest_id':id }">
                                 <kanban string="Guest">
                                     <field name="flight_number"/>
                                     <field name="cabin_class_id"/>
                                     <field name="seat_number"/>
-                                    <field name="origin"/>
-                                    <field name="destination"/>
+                                    <field name="origin_id"/>
+                                    <field name="destination_id"/>
                                     <field name="guests"/>
                                     <field name="guest_code"/>
                                     <field name="guest_id"/>
-
 
 
                                     <templates>
@@ -82,18 +83,18 @@
                                             <div>
                                                 <div t-attf-class="oe_kanban_global_click">
 
-                                                <div class="oe_kanban_details">
-                                                    <field name="guest_id"/>
+                                                    <div class="oe_kanban_details">
+                                                        <field name="guest_id"/>
 
-                                                    <field name="guest_code"/>
+                                                        <field name="guest_code"/>
 
 
-                                                    <div>
-                                                        <field name="last_name"/>
-                                                        <field name="seat_number"/>
+                                                        <div>
+                                                            <field name="last_name"/>
+                                                            <field name="seat_number"/>
+                                                        </div>
+                                                        <field name="origin_id"/>
                                                     </div>
-                                                    <field name="origin"/>
-                                                </div>
 
                                                 </div>
 
@@ -110,13 +111,13 @@
                                             <field name="flight_number"/>
                                             <field name="first_name"/>
                                             <field name="last_name"/>
-                                            <field name="origin"/>
-                                            <field name="destination"/>
+                                            <field name="origin_id"/>
+                                            <field name="destination_id"/>
                                             <field name="passenger"/>
 
                                         </group>
                                         <group>
-                                                                                <field name="guest_id"/>
+                                            <field name="guest_id"/>
 
                                             <field name="guest_code"/>
 
@@ -128,7 +129,8 @@
                                             <field name="cabin_class_id"/>
                                             <field name="reservation"/>
                                             <field name="date"/>
-                                            <field name="next_guest_code" invisible="1"/>
+                                            <field name="next_guest_code"
+                                                   invisible="1"/>
                                         </group>
 
                                     </group>
@@ -150,7 +152,7 @@
 
                             </group>
                         </page>
-                        <page name="connection_flight"
+                        <page name="connection"
                               string="Connection Flight"
                               attrs="{'invisible': [('connection_flight','!=',True)]}">
                             <field name="child_ids" mode="kanban"
@@ -161,15 +163,12 @@
                                     <field name="flight_number"/>
                                     <field name="cabin_class_id"/>
                                     <field name="seat_number"/>
-                                    <field name="origin"/>
-                                    <field name="destination"/>
+                                    <field name="origin_id"/>
+                                    <field name="destination_id"/>
                                     <templates>
                                         <t t-name="kanban-box">
-                                            <!--                                             <t t-set="color" t-value="kanban_color(record.color.raw_value)"/>-->
                                             <div t-attf-class="oe_kanban_global_click">
                                                 <div class="o_kanban_image">
-                                                    <img alt="Contact image"
-                                                         t-att-src="kanban_image('passenger.registration', 'avatar_128', record.id.raw_value)"/>
                                                 </div>
                                                 <div>
 
@@ -180,7 +179,7 @@
                                                             <field name="cabin_class_id"/>
                                                             <field name="seat_number"/>
                                                         </div>
-                                                        <field name="origin"/>
+                                                        <field name="origin_id"/>
                                                     </div>
 
 
@@ -198,8 +197,8 @@
                                             <field name="flight_number"/>
                                             <field name="first_name"/>
                                             <field name="last_name"/>
-                                            <field name="origin"/>
-                                            <field name="destination"/>
+                                            <field name="origin_id"/>
+                                            <field name="destination_id"/>
                                             <field name="passenger"/>
 
                                         </group>

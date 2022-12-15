@@ -38,6 +38,31 @@
             </tree>
         </field>
     </record>
+    <record id="travel_details_view_search_view" model="ir.ui.view">
+
+        <field name="name">travel.place.search.view</field>
+
+        <field name="model">travel.place</field>
+
+        <field name="arch" type="xml">
+
+            <search string="Airline">
+
+                <field name="code"/>
+
+                <filter name="code" string="Code"
+                        context="{'group_by':'code'}"/>
+
+<!--                <filter name="code" string="Code"/>-->
+<!--                <filter name="ruc" string="Ruc"-->
+<!--                        context="{'group_by':'code'}"/>-->
+<!--                <filter name="name" string="name"/>-->
+            </search>
+
+        </field>
+
+
+    </record>
 
     <menuitem id="travel_client" name="Travel" action="travel_client_action"  parent="airport_lounge.passenger_configuration"/>
 

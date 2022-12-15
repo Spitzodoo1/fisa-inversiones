@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="shower_creation_action" model="ir.actions.act_window">
+        <field name="name">Shower </field>
+        <field name="res_model">shower.creation</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="shower_details_view" model="ir.ui.view">
+        <field name="name">shower.creation.form</field>
+        <field name="model">shower.creation</field>
+        <field name="arch" type="xml">
+            <form string="menu">
+
+                                         <header>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="available,booked,maintenance,cleaning"/>
+                                             <button name="conform_shower" string="conform" type="object"/>
+                     </header>
+                <sheet>
+
+                        <group>
+                            <field name="name"/>
+                            <field name="branch_id"/>
+                            <field name="maintenance"/>
+                            <field name="cleaning"/>
+                        </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="shower_details_tree" model="ir.ui.view">
+        <field name="name">shower.creation.tree</field>
+        <field name="model">shower.creation</field>
+        <field name="arch" type="xml">
+            <tree string="menu">
+
+                       <field name="branch_id"/>
+                            <field name="name"/>
+
+            </tree>
+        </field>
+    </record>
+     <record id="shower_search_view" model="ir.ui.view">
+        <field name="name">cabin.class.view.search</field>
+        <field name="model">cabin.class</field>
+        <field name="arch" type="xml">
+            <search string="Shower ">
+
+                <filter name="name" string="Shower"
+                        context="{'group_by':'name'}"/>
+<!--                <filter name="code" string="Code"/>-->
+<!--                <filter name="name" string="Cabin Class"-->
+<!--                        context="{'group_by':'name'}"/>-->
+<!--                <filter name="name" string="Cabin Class"/>-->
+            </search>
+        </field>
+    </record>
+        <menuitem id="shower_details" name="Shower " action="shower_creation_action" parent="airport_lounge.passenger_configuration"/>
+
+</odoo>
+

@@ -16,8 +16,10 @@
         'views/guest_view.xml',
         'views/type_client.xml',
         'views/cabin_class.xml',
-
         'views/travel_place.xml',
+        'views/shower_creation.xml',
+        'views/shower_service.xml',
+        # 'views/shower_stages.xml'
 
 
 
